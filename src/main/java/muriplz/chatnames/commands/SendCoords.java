@@ -19,21 +19,23 @@ public class SendCoords implements CommandExecutor {
         int x = cordSender.getLocation().getBlockX();
         int y = cordSender.getLocation().getBlockY();
         int z = cordSender.getLocation().getBlockZ();
-        if (args.length == 1) {
-            Player cordReciever = Bukkit.getPlayer(args[0]);
-            if (cordReciever != null) {
 
-                String cord = "(" + x + "," + y + "," + z + ")";
-
-                cordReciever.sendMessage(ChatUtils.color("&6"+cordSender.getName()+"&f has sent you the current coords: &6"+cord));
-                cordSender.sendMessage("&6"+cordReciever.getName()+" &fhas recieved your coords.");
-
-            }else{
-                cordSender.sendMessage("Player not found");
-            }
-        }else{
+        if (args.length != 1) {
             cordSender.sendMessage("You have to enter a player's name");
+            return false;
         }
+
+        Player cordReciever = Bukkit.getPlayer(args[0]);
+
+        if (cordReciever == null) {
+            cordSender.sendMessage("Player not found");
+            return false;
+        }
+
+        String cord = "(" + x + "," + y + "," + z + ")";
+        cordReciever.sendMessage(ChatUtils.color("&6"+cordSender.getName()+"&f has sent you the current coords: &6"+cord));
+        cordSender.sendMessage("&6"+cordReciever.getName()+" &fhas recieved your coords.");
         return false;
+
     }
 }
