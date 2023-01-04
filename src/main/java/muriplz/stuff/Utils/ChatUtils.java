@@ -1,4 +1,4 @@
-package muriplz.chatnames.Utils;
+package muriplz.stuff.Utils;
 
 import org.bukkit.ChatColor;
 

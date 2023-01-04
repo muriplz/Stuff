@@ -1,7 +1,8 @@
-main: muriplz.chatnames.ChatNames
+main: muriplz.stuff.Stuff
 version: 1.0.0
 author: MuriPlz
 api-version: 1.18
+depend: [AFKPlus]
 name: ChatNames
 commands:
   vr:

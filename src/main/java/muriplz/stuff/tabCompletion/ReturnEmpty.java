@@ -1,4 +1,4 @@
-package muriplz.chatnames.tabCompletion;
+package muriplz.stuff.tabCompletion;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

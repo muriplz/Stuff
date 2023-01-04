@@ -1,4 +1,4 @@
-package muriplz.chatnames.Listener;
+package muriplz.stuff.Listener;
 
 import muriplz.chatnames.ChatNames;
 import muriplz.chatnames.Utils.ChatUtils;

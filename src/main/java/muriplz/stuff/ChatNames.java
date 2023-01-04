@@ -1,9 +1,9 @@
-package muriplz.chatnames;
+package muriplz.stuff;
 
-import muriplz.chatnames.Listener.*;
-import muriplz.chatnames.commands.*;
-import muriplz.chatnames.tabCompletion.ReturnEmpty;
-import muriplz.chatnames.tabCompletion.SendCoordsCompletion;
+import muriplz.stuff.Listener.*;
+import muriplz.stuff.commands.*;
+import muriplz.stuff.tabCompletion.ReturnEmpty;
+import muriplz.stuff.tabCompletion.SendCoordsCompletion;
 import net.lapismc.afkplus.api.AFKPlusPlayerAPI;
 import org.bukkit.plugin.java.JavaPlugin;
 

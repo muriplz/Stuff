@@ -1,6 +1,6 @@
-package muriplz.chatnames.Listener;
+package muriplz.stuff.Listener;
 
-import muriplz.chatnames.Utils.ChatUtils;
+import muriplz.stuff.Utils.ChatUtils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.hover.content.Text;
