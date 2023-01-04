@@ -1,4 +1,4 @@
-package muriplz.chatnames.commands;
+package com.kryeit.commands;
 
 import net.lapismc.afkplus.playerdata.AFKPlusPlayer;
 import net.md_5.bungee.api.ChatMessageType;
@@ -10,7 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static muriplz.chatnames.ChatNames.api;
+import static com.kryeit.Stuff.api;
 
 public class VotingReward implements CommandExecutor {
     @Override

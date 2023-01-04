@@ -1,6 +1,6 @@
-package muriplz.stuff.Listener;
+package com.kryeit.Listener;
 
-import muriplz.chatnames.Utils.ChatUtils;
+import com.kryeit.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -31,7 +31,7 @@ public class onBlockPlace implements Listener {
         for(Player p : Bukkit.getOnlinePlayers()){
             if(!p.equals(e.getPlayer())&&p.getWorld().equals(e.getPlayer().getWorld())){
                 if(p.getLocation().distance(e.getBlock().getLocation()) < 5){
-                    e.getPlayer().sendMessage(ChatUtils.color("&cYou cant place &6minecraft:"+ mat.toLowerCase()+"&c near another player"));
+                    e.getPlayer().sendMessage(Utils.color("&cYou cant place &6minecraft:"+ mat.toLowerCase()+"&c near another player"));
                     e.setCancelled(true);
                 }
             }

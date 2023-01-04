@@ -1,17 +1,16 @@
-package muriplz.stuff.Listener;
+package com.kryeit.Listener;
 
-import muriplz.stuff.Utils.ChatUtils;
+import com.kryeit.Utils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.hover.content.Text;
-import org.bukkit.ChatColor;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import java.awt.*;
+import static com.kryeit.Utils.isPlayerInGroup;
 
 public class onMessageSent implements Listener {
 
@@ -22,15 +21,11 @@ public class onMessageSent implements Listener {
         TextComponent t = getMessage(p, message);
 
         if( message.contains("trapped") || message.contains("stuck") || message.contains("get out")){
-            p.sendMessage(ChatUtils.color("&bIf you can't get out of somewhere, use /trapped"));
+            p.sendMessage(Utils.color("&bIf you can't get out of somewhere, use /trapped"));
         }
         e.setCancelled(true);
         p.spigot().sendMessage(ChatMessageType.valueOf(t+message));
 
-    }
-
-    public static boolean isPlayerInGroup(Player player, String group) {
-        return player.hasPermission("group." + group);
     }
 
     public static TextComponent getMessage(Player p, String message){

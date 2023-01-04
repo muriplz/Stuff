@@ -1,10 +1,9 @@
-package muriplz.stuff.Listener;
+package com.kryeit.Listener;
 
-import muriplz.chatnames.Utils.ChatUtils;
+import com.kryeit.Utils;
 import net.lapismc.afkplus.api.AFKStartEvent;
 import net.lapismc.afkplus.api.AFKStopEvent;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -20,7 +19,7 @@ public class onAFKToggle implements Listener {
             return;
         }
 
-        p.setPlayerListName(ChatUtils.color("&7" + p.getName()));
+        p.setPlayerListName(Utils.color("&7" + p.getName()));
     }
     @EventHandler
     public void stopAfk(AFKStopEvent e) {
@@ -30,6 +29,6 @@ public class onAFKToggle implements Listener {
             return;
         }
 
-        p.setPlayerListName(ChatUtils.color("&f" + p.getName()));
+        p.setPlayerListName(Utils.color("&f" + p.getName()));
     }
 }

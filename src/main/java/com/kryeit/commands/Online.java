@@ -1,6 +1,6 @@
-package muriplz.chatnames.commands;
+package com.kryeit.commands;
 
-import muriplz.chatnames.Utils.ChatUtils;
+import com.kryeit.Utils;
 import net.lapismc.afkplus.playerdata.AFKPlusPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static muriplz.chatnames.ChatNames.api;
+import static com.kryeit.Stuff.api;
 
 
 public class Online implements CommandExecutor {
@@ -27,7 +27,7 @@ public class Online implements CommandExecutor {
 
             }
         }
-        Bukkit.getConsoleSender().sendMessage(ChatUtils.color(message.toString()));
+        Bukkit.getConsoleSender().sendMessage(Utils.color(message.toString()));
         return false;
     }
 }

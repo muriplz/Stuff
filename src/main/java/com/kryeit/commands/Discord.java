@@ -1,6 +1,6 @@
-package muriplz.chatnames.commands;
+package com.kryeit.commands;
 
-import muriplz.chatnames.Utils.ChatUtils;
+import com.kryeit.Utils;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.command.Command;
@@ -12,7 +12,7 @@ import org.bukkit.entity.Player;
 public class Discord implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        TextComponent message = new TextComponent(ChatUtils.color("Discord -> &9&nhttps://discord.gg/5zQ8RVEzvw"));
+        TextComponent message = new TextComponent(Utils.color("Discord -> &9&nhttps://discord.gg/5zQ8RVEzvw"));
         message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/5zQ8RVEzvw"));
         Player player = (Player) sender;
         player.spigot().sendMessage(message);

@@ -1,4 +1,4 @@
-main: muriplz.stuff.Stuff
+main: com.kryeit.Stuff
 version: 1.0.0
 author: MuriPlz
 api-version: 1.18

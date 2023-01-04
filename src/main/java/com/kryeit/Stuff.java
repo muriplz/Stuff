@@ -1,9 +1,7 @@
-package muriplz.stuff;
+package com.kryeit;
 
-import muriplz.stuff.Listener.*;
-import muriplz.stuff.commands.*;
-import muriplz.stuff.tabCompletion.ReturnEmpty;
-import muriplz.stuff.tabCompletion.SendCoordsCompletion;
+import com.kryeit.Listener.*;
+import com.kryeit.commands.*;
 import net.lapismc.afkplus.api.AFKPlusPlayerAPI;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,7 +10,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
-public class ChatNames extends JavaPlugin {
+public class Stuff extends JavaPlugin {
 
     public static AFKPlusPlayerAPI api;
 
@@ -32,28 +30,28 @@ public class ChatNames extends JavaPlugin {
         Objects.requireNonNull(getCommand("vr")).setExecutor(new VotingReward());
 
         Objects.requireNonNull(getCommand("online")).setExecutor(new Online());
-        Objects.requireNonNull(getCommand("online")).setTabCompleter(new ReturnEmpty());
+        Objects.requireNonNull(getCommand("online")).setTabCompleter(new ReturnEmptyTab());
 
         Objects.requireNonNull(getCommand("discord")).setExecutor(new Discord());
-        Objects.requireNonNull(getCommand("discord")).setTabCompleter(new ReturnEmpty());
+        Objects.requireNonNull(getCommand("discord")).setTabCompleter(new ReturnEmptyTab());
 
         Objects.requireNonNull(getCommand("forum")).setExecutor(new Forum());
-        Objects.requireNonNull(getCommand("forum")).setTabCompleter(new ReturnEmpty());
+        Objects.requireNonNull(getCommand("forum")).setTabCompleter(new ReturnEmptyTab());
 
         Objects.requireNonNull(getCommand("rules")).setExecutor(new Rules());
-        Objects.requireNonNull(getCommand("rules")).setTabCompleter(new ReturnEmpty());
+        Objects.requireNonNull(getCommand("rules")).setTabCompleter(new ReturnEmptyTab());
 
         Objects.requireNonNull(getCommand("map")).setExecutor(new Map());
-        Objects.requireNonNull(getCommand("map")).setTabCompleter(new ReturnEmpty());
+        Objects.requireNonNull(getCommand("map")).setTabCompleter(new ReturnEmptyTab());
 
         Objects.requireNonNull(getCommand("sendcoords")).setExecutor(new SendCoords());
-        Objects.requireNonNull(getCommand("sendcoords")).setTabCompleter(new SendCoordsCompletion());
+        Objects.requireNonNull(getCommand("sendcoords")).setTabCompleter(new SendCoordsCompletionTab());
 
         Objects.requireNonNull(getCommand("vote")).setExecutor(new Vote());
-        Objects.requireNonNull(getCommand("vote")).setTabCompleter(new ReturnEmpty());
+        Objects.requireNonNull(getCommand("vote")).setTabCompleter(new ReturnEmptyTab());
 
         Objects.requireNonNull(getCommand("patreon")).setExecutor(new Patreon());
-        Objects.requireNonNull(getCommand("patreon")).setTabCompleter(new ReturnEmpty());
+        Objects.requireNonNull(getCommand("patreon")).setTabCompleter(new ReturnEmptyTab());
 
 
     }

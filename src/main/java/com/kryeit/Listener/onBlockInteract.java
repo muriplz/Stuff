@@ -1,6 +1,6 @@
-package muriplz.stuff.Listener;
+package com.kryeit.Listener;
 
-import muriplz.chatnames.Utils.ChatUtils;
+import com.kryeit.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -41,7 +41,7 @@ public class onBlockInteract implements Listener {
 
                 distance = p.getLocation().distance(e.getPlayer().getLocation());
                 if(distance < 8){
-                    e.getPlayer().sendMessage(ChatUtils.color("&cYou cant interact with &6minecraft:"
+                    e.getPlayer().sendMessage(Utils.color("&cYou cant interact with &6minecraft:"
                             + mat.toLowerCase() + "&c near another player"));
                     e.setCancelled(true);
                     return;

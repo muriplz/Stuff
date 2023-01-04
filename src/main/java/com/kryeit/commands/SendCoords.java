@@ -1,6 +1,6 @@
-package muriplz.chatnames.commands;
+package com.kryeit.commands;
 
-import muriplz.chatnames.Utils.ChatUtils;
+import com.kryeit.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -33,7 +33,7 @@ public class SendCoords implements CommandExecutor {
         }
 
         String cord = "(" + x + "," + y + "," + z + ")";
-        cordReciever.sendMessage(ChatUtils.color("&6" + cordSender.getName() + "&f has sent you the current coords: &6" + cord));
+        cordReciever.sendMessage(Utils.color("&6" + cordSender.getName() + "&f has sent you the current coords: &6" + cord));
         cordSender.sendMessage("&6" + cordReciever.getName() + " &fhas recieved your coords.");
         return true;
 

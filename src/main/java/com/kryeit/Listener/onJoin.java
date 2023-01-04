@@ -1,9 +1,6 @@
-package muriplz.stuff.Listener;
+package com.kryeit.Listener;
 
-import muriplz.chatnames.ChatNames;
-import muriplz.chatnames.Utils.ChatUtils;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.TextComponent;
+import com.kryeit.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -25,7 +22,7 @@ public class onJoin implements Listener {
             if(player.getName().equals(p.getName())){
                 continue;
             }
-            player.sendMessage(ChatUtils.color("&b" + p.getName()
+            player.sendMessage(Utils.color("&b" + p.getName()
                     + " has joined for the first time! Welcome!"));
         }
     }
