@@ -2,12 +2,10 @@ package com.kryeit.Listener;
 
 import com.kryeit.Stuff;
 import com.kryeit.Utils;
-import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.hover.content.Text;
 import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
