@@ -50,7 +50,7 @@ public class onMessageSent implements Listener {
             group = "Helper";
         }
         else if(isPlayerInGroup(p,"booster")){
-            color = "&5";
+            color = "&d";
             group = "Booster";
         }
         else if(isPlayerInGroup(p,"collaborator")) {
