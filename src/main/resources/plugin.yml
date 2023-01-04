@@ -1,0 +1,27 @@
+main: muriplz.chatnames.ChatNames
+version: 1.0.0
+author: MuriPlz
+api-version: 1.18
+name: ChatNames
+commands:
+  vr:
+    description: Voting for my server rewards
+  online:
+    description: online players
+    permission: chatnames.online
+  discord:
+    description: sends discord link
+  forum:
+    description: sends forum link
+  rules:
+    description: sends rules link
+  sendcoords:
+    description: sends your cords to the player
+  map:
+    description: shows dynmap url
+  vote:
+    description: sends planetminecraft link
+  patreon:
+    description: sends patreon link
+    aliases:
+      - donate
