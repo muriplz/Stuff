@@ -13,13 +13,17 @@ import java.util.UUID;
 public class Stuff extends JavaPlugin {
 
     public static AFKPlusPlayerAPI api;
-
     public static List<UUID> sent;
+    public static Stuff instance;
+
     public void onEnable() {
 
         sent = new ArrayList<>();
 
         api = new AFKPlusPlayerAPI();
+
+        instance = this;
+
         getServer().getPluginManager().registerEvents(new onMessageSent(), this);
         getServer().getPluginManager().registerEvents(new onAFKToggle(), this);
         getServer().getPluginManager().registerEvents(new onJoin(), this);
@@ -57,5 +61,9 @@ public class Stuff extends JavaPlugin {
     }
 
     public void onDisable() {
+    }
+
+    public static Stuff getInstance(){
+        return instance;
     }
 }

@@ -1,10 +1,12 @@
 package com.kryeit.Listener;
 
+import com.kryeit.Stuff;
 import com.kryeit.Utils;
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.hover.content.Text;
 import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,12 +21,14 @@ public class onMessageSent implements Listener {
         String message = e.getMessage();
         Player p = e.getPlayer();
         TextComponent t = getMessage(p, message);
+        TextComponent t2 = new TextComponent(message);
 
         if( message.contains("trapped") || message.contains("stuck") || message.contains("get out")){
             p.sendMessage(Utils.color("&bIf you can't get out of somewhere, use /trapped"));
         }
         e.setCancelled(true);
-        p.spigot().sendMessage(ChatMessageType.valueOf(t+message));
+
+        Stuff.getInstance().getServer().spigot().broadcast(t,t2);
 
     }
 
@@ -58,7 +62,7 @@ public class onMessageSent implements Listener {
         String temp = color + name + "&f: ";
         String hover = name+"'s rank is "+color+group+"&7\n\nClick to whisper";
 
-        TextComponent t = new TextComponent(temp);
+        TextComponent t = new TextComponent(Utils.color(temp));
         t.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(hover)));
         return t;
 
