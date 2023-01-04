@@ -23,10 +23,10 @@ public class ChatNames extends JavaPlugin {
 
         api = new AFKPlusPlayerAPI();
         getServer().getPluginManager().registerEvents(new onMessageSent(), this);
-        getServer().getPluginManager().registerEvents(new afk(), this);
+        getServer().getPluginManager().registerEvents(new onAFKToggle(), this);
         getServer().getPluginManager().registerEvents(new onJoin(), this);
-        getServer().getPluginManager().registerEvents(new onLavaOrFirePlace(), this);
-        getServer().getPluginManager().registerEvents(new onLavaPlace(), this);
+        getServer().getPluginManager().registerEvents(new onBlockPlace(), this);
+        getServer().getPluginManager().registerEvents(new onBlockInteract(), this);
 
 
         Objects.requireNonNull(getCommand("vr")).setExecutor(new VotingReward());

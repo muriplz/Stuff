@@ -1,5 +1,6 @@
 package muriplz.chatnames.Listener;
 
+import muriplz.chatnames.Utils.ChatUtils;
 import net.lapismc.afkplus.api.AFKStartEvent;
 import net.lapismc.afkplus.api.AFKStopEvent;
 import org.bukkit.Bukkit;
@@ -9,23 +10,26 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-public class afk implements Listener {
+public class onAFKToggle implements Listener {
 
     @EventHandler
-    public void onAfk(AFKStartEvent e) {
+    public void startAfk(AFKStartEvent e) {
         Player p = Bukkit.getPlayer(e.getPlayer().getUUID()) ;
 
         if(p.getGameMode().equals(GameMode.SPECTATOR)){
             return;
         }
-        p.setPlayerListName(ChatColor.GRAY + p.getName());
+
+        p.setPlayerListName(ChatUtils.color("&7" + p.getName()));
     }
     @EventHandler
-    public void onAfkOut(AFKStopEvent e) {
+    public void stopAfk(AFKStopEvent e) {
         Player p = Bukkit.getPlayer(e.getPlayer().getUUID()) ;
+
         if(p.getGameMode().equals(GameMode.SPECTATOR)){
             return;
         }
-        p.setPlayerListName(ChatColor.WHITE + p.getName());
+
+        p.setPlayerListName(ChatUtils.color("&f" + p.getName()));
     }
 }

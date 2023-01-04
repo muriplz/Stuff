@@ -29,6 +29,7 @@ public class SendCoordsCompletion implements TabCompleter {
                     completions.add(allTab);
                 }
             }
+
             return completions;
         }
         return new ArrayList<>();

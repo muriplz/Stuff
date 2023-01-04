@@ -33,8 +33,8 @@ public class SendCoords implements CommandExecutor {
         }
 
         String cord = "(" + x + "," + y + "," + z + ")";
-        cordReciever.sendMessage(ChatUtils.color("&6"+cordSender.getName()+"&f has sent you the current coords: &6"+cord));
-        cordSender.sendMessage("&6"+cordReciever.getName()+" &fhas recieved your coords.");
+        cordReciever.sendMessage(ChatUtils.color("&6" + cordSender.getName() + "&f has sent you the current coords: &6" + cord));
+        cordSender.sendMessage("&6" + cordReciever.getName() + " &fhas recieved your coords.");
         return true;
 
     }

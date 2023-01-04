@@ -11,14 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class onLavaPlace implements Listener {
-
-    public List<String> target(){
-        List<String> target = new ArrayList<>();
-        target.add("LAVA_BUCKET");
-        target.add("END_CRySTAL");
-        return target;
-    }
+public class onBlockInteract implements Listener {
 
     @EventHandler
     public void onInteract(PlayerInteractEvent e){
@@ -37,6 +30,7 @@ public class onLavaPlace implements Listener {
                 break;
             }
         }
+
         if(!condition){
             return;
         }
@@ -47,14 +41,20 @@ public class onLavaPlace implements Listener {
 
                 distance = p.getLocation().distance(e.getPlayer().getLocation());
                 if(distance < 8){
-                    e.getPlayer().sendMessage(ChatUtils.color("&cYou cant interact with &6minecraft:"+ mat.toLowerCase()+"&c near another player"));
+                    e.getPlayer().sendMessage(ChatUtils.color("&cYou cant interact with &6minecraft:"
+                            + mat.toLowerCase() + "&c near another player"));
                     e.setCancelled(true);
                     return;
                 }
             }
 
-
-
         }
+    }
+
+    public List<String> target(){
+        List<String> target = new ArrayList<>();
+        target.add("LAVA_BUCKET");
+        target.add("END_CRYSTAL");
+        return target;
     }
 }

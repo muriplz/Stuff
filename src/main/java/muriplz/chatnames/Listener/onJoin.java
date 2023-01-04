@@ -14,13 +14,19 @@ public class onJoin implements Listener {
 
     @EventHandler
     public void onNewPlayerJoin (PlayerJoinEvent e){
+
         Player p = e.getPlayer();
-        if(!p.hasPlayedBefore()){
-            for (Player player : Bukkit.getOnlinePlayers()){
-                if(!player.getName().equals(p.getName())){
-                    player.sendMessage(ChatUtils.color("&b"+p.getName()+" has joined for the first time! Welcome!"));
-                }
+
+        if(p.hasPlayedBefore()){
+            return;
+        }
+
+        for (Player player : Bukkit.getOnlinePlayers()){
+            if(player.getName().equals(p.getName())){
+                continue;
             }
+            player.sendMessage(ChatUtils.color("&b" + p.getName()
+                    + " has joined for the first time! Welcome!"));
         }
     }
 }

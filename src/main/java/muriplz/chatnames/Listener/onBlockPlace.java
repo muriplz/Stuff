@@ -10,14 +10,16 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class onLavaOrFirePlace implements Listener {
+public class onBlockPlace implements Listener {
 
     @EventHandler
     public void onPlace (BlockPlaceEvent e){
+
         if(!target().contains(e.getBlock().getType().toString())){
             return;
         }
-        String mat=" ";
+
+        String mat="";
 
         for(String s : target()){
             if(s.equals(e.getBlock().getType().toString())){
@@ -25,6 +27,7 @@ public class onLavaOrFirePlace implements Listener {
                 break;
             }
         }
+
         for(Player p : Bukkit.getOnlinePlayers()){
             if(!p.equals(e.getPlayer())&&p.getWorld().equals(e.getPlayer().getWorld())){
                 if(p.getLocation().distance(e.getBlock().getLocation()) < 5){
@@ -33,10 +36,9 @@ public class onLavaOrFirePlace implements Listener {
                 }
             }
 
-
-
         }
     }
+
     public List<String> target(){
         List<String> target = new ArrayList<>();
         target.add("FIRE");
