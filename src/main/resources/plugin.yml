@@ -26,3 +26,5 @@ commands:
     description: sends patreon link
     aliases:
       - donate
+  timeplayed:
+    description: sees time played

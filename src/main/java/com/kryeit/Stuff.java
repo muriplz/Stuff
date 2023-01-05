@@ -49,13 +49,16 @@ public class Stuff extends JavaPlugin {
         Objects.requireNonNull(getCommand("map")).setTabCompleter(new ReturnEmptyTab());
 
         Objects.requireNonNull(getCommand("sendcoords")).setExecutor(new SendCoords());
-        Objects.requireNonNull(getCommand("sendcoords")).setTabCompleter(new SendCoordsCompletionTab());
+        Objects.requireNonNull(getCommand("sendcoords")).setTabCompleter(new BasicPlayerTab());
 
         Objects.requireNonNull(getCommand("vote")).setExecutor(new Vote());
         Objects.requireNonNull(getCommand("vote")).setTabCompleter(new ReturnEmptyTab());
 
         Objects.requireNonNull(getCommand("patreon")).setExecutor(new Patreon());
         Objects.requireNonNull(getCommand("patreon")).setTabCompleter(new ReturnEmptyTab());
+
+        Objects.requireNonNull(getCommand("timeplayed")).setExecutor(new TimePlayed());
+        Objects.requireNonNull(getCommand("timeplayed")).setTabCompleter(new BasicPlayerTab());
 
 
     }
