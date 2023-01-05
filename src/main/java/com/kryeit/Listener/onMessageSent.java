@@ -46,13 +46,13 @@ public class onMessageSent implements Listener {
             color = "&b";
             group = "Helper";
         }
-        else if(isPlayerInGroup(p,"booster")){
-            color = "&d";
-            group = "Booster";
-        }
         else if(isPlayerInGroup(p,"collaborator")) {
             color = "&6";
             group = "Collaborator";
+        }
+        else if(isPlayerInGroup(p,"booster")){
+            color = "&d";
+            group = "Booster";
         }
         else{
             color = "&7";
