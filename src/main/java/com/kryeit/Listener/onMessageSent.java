@@ -22,9 +22,6 @@ public class onMessageSent implements Listener {
         TextComponent t = getMessage(p);
         TextComponent t2 = new TextComponent(message);
 
-        t2.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND,
-                "/m " + p.getName() + " "));
-
         if( message.contains("trapped") || message.contains("stuck") || message.contains("get out")){
             p.sendMessage(Utils.color("&bIf you can't get out of somewhere, use /trapped"));
         }
