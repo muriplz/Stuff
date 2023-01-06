@@ -15,12 +15,15 @@ public class Stuff extends JavaPlugin {
     public static AFKPlusPlayerAPI api;
     public static List<UUID> sent;
     public static Stuff instance;
+    public static List<UUID> warned;
 
     public void onEnable() {
 
         sent = new ArrayList<>();
 
         api = new AFKPlusPlayerAPI();
+
+        warned = new ArrayList<>();
 
         instance = this;
 

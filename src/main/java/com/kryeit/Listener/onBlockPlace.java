@@ -1,8 +1,12 @@
 package com.kryeit.Listener;
 
+import com.kryeit.Stuff;
 import com.kryeit.Utils;
+import org.apache.commons.lang.CharUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -16,17 +20,27 @@ public class onBlockPlace implements Listener {
     @EventHandler
     public void onPlace (BlockPlaceEvent e){
 
-        if(e.getBlock().getType().toString().equals("CREATE_BRASS_BELT_FUNNEL") || e.getBlock().getType().toString().equals("CREATE_BRASS_FUNNEL")){
+        String b = e.getBlock().getType().toString();
+        Player pl = e.getPlayer();
 
+        if(b.equals("CREATE_BRASS_BELT_FUNNEL") || b.equals("CREATE_BRASS_FUNNEL")){
+            String ba = e.getBlockAgainst().getType().toString();
+            if(ba.equals("CREATE_ITEM_VAULT") || ba.contains("BACKPACK")){
+                if(!Stuff.warned.contains(pl.getUniqueId())){
+                    pl.sendMessage(Utils.color("&aFunnels placed on vaults and backpacks causes lag issues. It's recommended to switch to other alternative."));
+                    Stuff.warned.add(pl.getUniqueId());
+                }
+            }
         }
-        if(!target().contains(e.getBlock().getType().toString())){
+
+        if(!target().contains(b)){
             return;
         }
 
         String mat="";
 
         for(String s : target()){
-            if(s.equals(e.getBlock().getType().toString())){
+            if(s.equals(b)){
                 mat=s;
                 break;
             }
@@ -35,10 +49,10 @@ public class onBlockPlace implements Listener {
         for(Player p : Bukkit.getOnlinePlayers()){
 
             if(p.getGameMode().equals(GameMode.SPECTATOR)) continue;
-            
-            if(!p.equals(e.getPlayer())&&p.getWorld().equals(e.getPlayer().getWorld())){
+
+            if(!p.equals(pl) && p.getWorld().equals(pl.getWorld())){
                 if(p.getLocation().distance(e.getBlock().getLocation()) < 5){
-                    e.getPlayer().sendMessage(Utils.color("&cYou cant place &6minecraft:"+ mat.toLowerCase()+"&c near another player"));
+                    pl.sendMessage(Utils.color("&cYou cant place &6minecraft:"+ mat.toLowerCase()+"&c near another player"));
                     e.setCancelled(true);
                 }
             }
