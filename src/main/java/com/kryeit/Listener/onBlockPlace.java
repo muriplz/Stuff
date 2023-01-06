@@ -2,6 +2,7 @@ package com.kryeit.Listener;
 
 import com.kryeit.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -15,6 +16,9 @@ public class onBlockPlace implements Listener {
     @EventHandler
     public void onPlace (BlockPlaceEvent e){
 
+        if(e.getBlock().getType().toString().equals("CREATE_BRASS_BELT_FUNNEL") || e.getBlock().getType().toString().equals("CREATE_BRASS_FUNNEL")){
+
+        }
         if(!target().contains(e.getBlock().getType().toString())){
             return;
         }
@@ -29,6 +33,9 @@ public class onBlockPlace implements Listener {
         }
 
         for(Player p : Bukkit.getOnlinePlayers()){
+
+            if(p.getGameMode().equals(GameMode.SPECTATOR)) continue;
+            
             if(!p.equals(e.getPlayer())&&p.getWorld().equals(e.getPlayer().getWorld())){
                 if(p.getLocation().distance(e.getBlock().getLocation()) < 5){
                     e.getPlayer().sendMessage(Utils.color("&cYou cant place &6minecraft:"+ mat.toLowerCase()+"&c near another player"));
