@@ -27,7 +27,7 @@ public class onBlockPlace implements Listener {
             String ba = e.getBlockAgainst().getType().toString();
             if(ba.equals("CREATE_ITEM_VAULT") || ba.contains("BACKPACK")){
                 if(!Stuff.warned.contains(pl.getUniqueId())){
-                    pl.sendMessage(Utils.color("&aFunnels placed on vaults and backpacks causes lag issues. It's recommended to switch to other alternative."));
+                    pl.sendMessage(Utils.color("&aFunnels placed on vaults and backpacks causes lag issues. It's recommended to switch to other alternatives."));
                     Stuff.warned.add(pl.getUniqueId());
                 }
             }
