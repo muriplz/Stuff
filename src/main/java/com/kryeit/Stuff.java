@@ -32,6 +32,7 @@ public class Stuff extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new onJoin(), this);
         getServer().getPluginManager().registerEvents(new onBlockPlace(), this);
         getServer().getPluginManager().registerEvents(new onBlockInteract(), this);
+        getServer().getPluginManager().registerEvents(new onWeatherChange(), this);
 
 
         Objects.requireNonNull(getCommand("vr")).setExecutor(new VotingReward());
