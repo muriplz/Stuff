@@ -2,11 +2,8 @@ package com.kryeit.Listener;
 
 import com.kryeit.Stuff;
 import com.kryeit.Utils;
-import org.apache.commons.lang.CharUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,7 +24,7 @@ public class onBlockPlace implements Listener {
             String ba = e.getBlockAgainst().getType().toString();
             if(ba.equals("CREATE_ITEM_VAULT") || ba.contains("BACKPACK")){
                 if(!Stuff.warned.contains(pl.getUniqueId())){
-                    pl.sendMessage(Utils.color("&aFunnels placed on vaults and backpacks causes lag issues. It's recommended to switch to other alternatives."));
+                    pl.sendMessage(Utils.color("&aFunnels placed on vaults and backpacks causes lag issues. It's recommended to switch to other alternatives.\nIf you power the funnel with redstone it will be lag free."));
                     Stuff.warned.add(pl.getUniqueId());
                 }
             }
