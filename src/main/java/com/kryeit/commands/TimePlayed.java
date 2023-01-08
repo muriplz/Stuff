@@ -31,7 +31,7 @@ public class TimePlayed implements CommandExecutor {
             return false;
         }
 
-        String time = Utils.getTime(player.getStatistic(Statistic.TOTAL_WORLD_TIME)*60);
+        String time = Utils.getTime(player.getStatistic(Statistic.PLAY_ONE_MINUTE)/20);
 
         p.sendMessage(Utils.color("The player &6" + player.getName() + "&f has played for " + time));
 
