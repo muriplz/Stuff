@@ -20,7 +20,7 @@ public class onBlockPlace implements Listener {
         String b = e.getBlock().getType().toString();
         Player pl = e.getPlayer();
 
-        if(b.equals("CREATE_BRASS_BELT_FUNNEL") || b.equals("CREATE_BRASS_FUNNEL")){
+        if(b.equals("CREATE_BRASS_BELT_FUNNEL") || b.equals("CREATE_BRASS_FUNNEL") || b.equals("CREATE_SMART_CHUTE")){
             String ba = e.getBlockAgainst().getType().toString();
             if(ba.equals("CREATE_ITEM_VAULT") || ba.contains("BACKPACK")){
                 if(!Stuff.warned.contains(pl.getUniqueId())){
