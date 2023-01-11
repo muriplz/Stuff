@@ -1,6 +1,7 @@
 package com.kryeit;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -24,7 +25,9 @@ public class PlayerTab implements TabCompleter {
             // Get the name of all online players and add it to allTabs
             Bukkit.getOnlinePlayers().forEach(p -> allTabs.add(p.getName()));
 
-            Arrays.stream(Bukkit.getOfflinePlayers()).iterator().forEachRemaining(p -> allTabs.add(p.getName()));
+            for(OfflinePlayer offlinePlayer : Stuff.offlinePlayers) {
+                allTabs.add(offlinePlayer.getName());
+            }
 
             // Add to "completions" all words that have letters that are contained on "commands" list
             for (String allTab : allTabs) {

@@ -2,13 +2,13 @@ package com.kryeit;
 
 import com.kryeit.Listener.*;
 import com.kryeit.commands.*;
+import com.kryeit.commands.Map;
 import net.lapismc.afkplus.api.AFKPlusPlayerAPI;
+import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class Stuff extends JavaPlugin {
 
@@ -16,10 +16,15 @@ public class Stuff extends JavaPlugin {
     public static List<UUID> sent;
     public static Stuff instance;
     public static List<UUID> warned;
+    public static Set<OfflinePlayer> offlinePlayers;
 
     public void onEnable() {
 
         sent = new ArrayList<>();
+
+        offlinePlayers = new HashSet<>();
+
+        offlinePlayers.addAll(Arrays.asList(Bukkit.getServer().getOfflinePlayers()));
 
         afkPlusPlayerAPI = new AFKPlusPlayerAPI();
 
@@ -66,7 +71,6 @@ public class Stuff extends JavaPlugin {
 
         Objects.requireNonNull(getCommand("lastonline")).setExecutor(new LastOnline());
         Objects.requireNonNull(getCommand("lastonline")).setTabCompleter(new PlayerTab());
-
 
     }
 
