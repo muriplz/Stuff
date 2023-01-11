@@ -54,7 +54,7 @@ public class Utils {
 
     public static ArrayList<String> offlineNames() {
         ArrayList<String> list = new ArrayList<>();
-        for(OfflinePlayer p : Bukkit.getServer().getOfflinePlayers()){
+        for(OfflinePlayer p : Bukkit.getServer().getOfflinePlayers()) {
             list.add(p.getName());
         }
         return list;
