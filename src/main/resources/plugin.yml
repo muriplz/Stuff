@@ -1,8 +1,8 @@
 main: com.kryeit.Stuff
-version: 1.0.0
+version: 1.1
 author: MuriPlz
 api-version: 1.18
-depend: [AFKPlus]
+depend: [AFKPlus,GriefDefender]
 name: ChatNames
 commands:
   vr:
@@ -27,4 +27,6 @@ commands:
     aliases:
       - donate
   timeplayed:
-    description: sees time played
+    description: shows time played
+  lastonline:
+    description: shows last time online

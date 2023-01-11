@@ -3,15 +3,20 @@ plugins {
 }
 
 group 'com.kryeit'
-version '1.0-DEV2'
+version '1.1'
 
 repositories {
     mavenCentral()
     maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"}
+    maven {
+        name = 'griefdefender'
+        url = 'https://repo.glaremasters.me/repository/bloodshot'
+    }
 
 }
 
 dependencies {
+    compileOnly "com.griefdefender:api:2.1.0-20220122.032038-5"
     compileOnly "org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT"
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'

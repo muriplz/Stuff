@@ -64,6 +64,9 @@ public class Stuff extends JavaPlugin {
         Objects.requireNonNull(getCommand("timeplayed")).setExecutor(new TimePlayed());
         Objects.requireNonNull(getCommand("timeplayed")).setTabCompleter(new BasicPlayerTab());
 
+        Objects.requireNonNull(getCommand("lastonline")).setExecutor(new LastOnline());
+        Objects.requireNonNull(getCommand("lastonline")).setTabCompleter(new BasicPlayerTab());
+
 
     }
 

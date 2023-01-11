@@ -19,19 +19,19 @@ public class TimePlayed implements CommandExecutor {
 
         Player p = (Player) sender;
 
-        if(args.length != 1){
+        if(args.length != 1) {
             p.sendMessage("You have to enter a player's name");
             return false;
         }
 
         Player player = Bukkit.getPlayer(args[0]);
 
-        if(player == null){
+        if(player == null) {
             p.sendMessage("Player not found");
             return false;
         }
 
-        String time = Utils.getTime(player.getStatistic(Statistic.PLAY_ONE_MINUTE)/20);
+        String time = Utils.getTime(player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20);
 
         p.sendMessage(Utils.color("The player &6" + player.getName() + "&f has played for " + time));
 

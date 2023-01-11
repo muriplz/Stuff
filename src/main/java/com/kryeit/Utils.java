@@ -3,6 +3,9 @@ package com.kryeit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.concurrent.TimeUnit;
 
 public class Utils {
@@ -15,6 +18,34 @@ public class Utils {
         return player.hasPermission("group." + group);
     }
 
+    public static String getTimeBetween(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
+        LocalDateTime tempDateTime = LocalDateTime.from( fromDateTime );
+
+        long years = tempDateTime.until( toDateTime, ChronoUnit.YEARS );
+        tempDateTime = tempDateTime.plusYears( years );
+
+        long months = tempDateTime.until( toDateTime, ChronoUnit.MONTHS );
+        tempDateTime = tempDateTime.plusMonths( months );
+
+        long days = tempDateTime.until( toDateTime, ChronoUnit.DAYS );
+
+        StringBuilder time = new StringBuilder();
+        if( years != 0 ) {
+            time.append(years).append(" years ");
+        }
+        if( months != 0 ) {
+            time.append(months).append(" months ");
+        }
+        if( days != 0 ) {
+            time.append(days).append(" days ");
+        }
+        if( years != 0 && months != 0 && days != 0) {
+            return "less than a day";
+        }
+        return time.toString();
+
+    }
+
     public static String getTime(int secondsx) {
         int days = (int) TimeUnit.SECONDS.toDays(secondsx);
         int hours = (int) (TimeUnit.SECONDS.toHours(secondsx) - TimeUnit.DAYS.toHours(days));
@@ -24,15 +55,15 @@ public class Utils {
                 - TimeUnit.HOURS.toSeconds(hours) - TimeUnit.DAYS.toSeconds(days));
 
         if (days != 0) {
-            return days + "d, " + hours + "h, " + minutes + "m, " + seconds + "s";
+            return days + "&6d&f, " + hours + "&6h&f, " + minutes + "&6m&f, " + seconds + "&6s&f";
         } else {
             if (hours != 0) {
-                return hours + "h, " + minutes + "m, " + seconds + "s";
+                return hours + "&6h&f, " + minutes + "&6m&f, " + seconds + "&6s&f";
             } else {
                 if (minutes != 0) {
-                    return minutes + "m, " + seconds + "s";
+                    return minutes + "&6m&f, " + seconds + "&6s&f";
                 } else {
-                    return seconds + "s";
+                    return seconds + "&6s&f";
                 }
             }
 
