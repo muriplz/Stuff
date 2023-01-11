@@ -6,6 +6,7 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.chat.hover.content.Text;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -19,7 +20,8 @@ public class onMessageSent implements Listener {
     public void onMessage(AsyncPlayerChatEvent e) {
         String message = e.getMessage();
         Player p = e.getPlayer();
-        TextComponent t = getMessage(p);
+
+        TextComponent t = getMessage(p,message);
         TextComponent t2 = new TextComponent(message);
 
         if( message.contains("trapped") || message.contains("stuck") || message.contains("get out")){
@@ -32,7 +34,7 @@ public class onMessageSent implements Listener {
 
     }
 
-    public static TextComponent getMessage(Player p){
+    public static TextComponent getMessage(Player p, String message){
 
         String name = p.getName();
         String color;
@@ -60,8 +62,10 @@ public class onMessageSent implements Listener {
         }
 
         String temp = Utils.color(color + name + "&f: ");
-        String hover = Utils.color(name+"'s rank is "
+        String hover = Utils.color(name + "'s rank is "
                 + color + group + "&7\n\nClick to whisper");
+
+        Bukkit.getConsoleSender().sendMessage(temp + message);
 
         TextComponent t = new TextComponent(temp);
 
