@@ -8,7 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static com.kryeit.Stuff.api;
+import static com.kryeit.Stuff.afkPlusPlayerAPI;
 
 
 public class Online implements CommandExecutor {
@@ -18,7 +18,7 @@ public class Online implements CommandExecutor {
         StringBuilder message= new StringBuilder(" ");
         AFKPlusPlayer player;
         for(Player p : Bukkit.getOnlinePlayers()){
-            player = api.getPlayer(p.getUniqueId());
+            player = afkPlusPlayerAPI.getPlayer(p.getUniqueId());
             if(player.isAFK()){
                 message.append("&7" + p.getName()+" ");
 

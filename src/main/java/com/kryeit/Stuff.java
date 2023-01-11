@@ -12,7 +12,7 @@ import java.util.UUID;
 
 public class Stuff extends JavaPlugin {
 
-    public static AFKPlusPlayerAPI api;
+    public static AFKPlusPlayerAPI afkPlusPlayerAPI;
     public static List<UUID> sent;
     public static Stuff instance;
     public static List<UUID> warned;
@@ -21,7 +21,7 @@ public class Stuff extends JavaPlugin {
 
         sent = new ArrayList<>();
 
-        api = new AFKPlusPlayerAPI();
+        afkPlusPlayerAPI = new AFKPlusPlayerAPI();
 
         warned = new ArrayList<>();
 
@@ -65,7 +65,7 @@ public class Stuff extends JavaPlugin {
         Objects.requireNonNull(getCommand("timeplayed")).setTabCompleter(new BasicPlayerTab());
 
         Objects.requireNonNull(getCommand("lastonline")).setExecutor(new LastOnline());
-        Objects.requireNonNull(getCommand("lastonline")).setTabCompleter(new BasicPlayerTab());
+        Objects.requireNonNull(getCommand("lastonline")).setTabCompleter(new PlayerTab());
 
 
     }
@@ -73,7 +73,7 @@ public class Stuff extends JavaPlugin {
     public void onDisable() {
     }
 
-    public static Stuff getInstance(){
+    public static Stuff getInstance() {
         return instance;
     }
 }

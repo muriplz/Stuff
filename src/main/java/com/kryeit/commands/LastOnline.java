@@ -4,6 +4,7 @@ import com.griefdefender.api.GriefDefender;
 import com.griefdefender.api.claim.Claim;
 import com.kryeit.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class LastOnline implements CommandExecutor {
     @Override
@@ -23,16 +25,39 @@ public class LastOnline implements CommandExecutor {
             return false;
         }
         Player other = Bukkit.getPlayer(args[0]);
+
+        if(Utils.isOffline(args[0]) && other == null) {
+            for(OfflinePlayer offlinePlayer : Bukkit.getOfflinePlayers()) {
+                if(offlinePlayer.getName().equals(args[0])){
+                    player.sendMessage(getMessage(offlinePlayer.getUniqueId(),offlinePlayer.getName()));
+                    return true;
+                }
+            }
+        }
+
         if(other == null){
             player.sendMessage("Player not found");
             return false;
         }
 
-        for(Claim claim : GriefDefender.getCore().getUser(other.getUniqueId()).getPlayerData().getClaims()) {
+        if(other.isOnline()) {
+            player.sendMessage(Utils.color("&6" + other.getName() + "&f is online"));
+            return false;
+        }
+
+        player.sendMessage(getMessage(other.getUniqueId(),other.getName()));
+
+        return true;
+    }
+
+    public String getMessage(UUID id , String name) {
+        String howLong = "";
+        StringBuilder sb = new StringBuilder();
+        for(Claim claim : GriefDefender.getCore().getUser(id).getPlayerData().getClaims()) {
             LocalDateTime date = LocalDateTime.now();
             LocalDateTime lastonline = LocalDateTime.ofInstant(claim.getData().getDateLastActive(), ZoneOffset.UTC);
             String[] chars = claim.getData().getDateLastActive().toString().split("");
-            StringBuilder sb = new StringBuilder();
+
             int i = 1;
             for (String ch : chars) {
 
@@ -43,12 +68,12 @@ public class LastOnline implements CommandExecutor {
                 i++;
             }
 
-            String howLong = Utils.getTimeBetween(lastonline,date);
+            howLong = Utils.getTimeBetween(lastonline,date);
 
-            player.sendMessage(Utils.color("The last time &6" + other.getName() + "&f has been online is &6" + sb +
-                    "&f, and has been offline for &6" + howLong));
+
             break;
         }
-        return true;
+        return Utils.color("The last time &6" + name + "&f has been online is &6" + sb +
+                "&f, and has been offline for &6" + howLong);
     }
 }

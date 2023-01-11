@@ -10,31 +10,31 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static com.kryeit.Stuff.api;
+import static com.kryeit.Stuff.afkPlusPlayerAPI;
 
 public class VotingReward implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String player = args[0];
+
+        if(args.length != 2) return false;
+
+        String name = args[0];
+        Player player = Bukkit.getPlayer(name);
+
+        if(player == null) return false;
+
+        AFKPlusPlayer afkPlusPlayer;
         int reward = Integer.parseInt(args[1]);
-        Player p = Bukkit.getPlayer(player);
 
-        if(p == null) {
-            return false;
-        }
-        AFKPlusPlayer guy;
+        for(Player p : Bukkit.getOnlinePlayers()) {
+            if(p.getName().equals(name)) continue;
 
-        for(Player pla : Bukkit.getOnlinePlayers()) {
-            if(!pla.getName().equals(player)) {
-                guy = api.getPlayer(pla.getUniqueId());
+            afkPlusPlayer = afkPlusPlayerAPI.getPlayer(p.getUniqueId());
+            if(afkPlusPlayer.isAFK()) continue;
 
-                if(!guy.isAFK()){
-                    Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gd player adjustbonusblocks " + pla.getName() + " " + reward);
-                    String message = Utils.color("&7Someone voted... +"+reward+" bonus claim blocks!");
-                    pla.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
-                }
-
-            }
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gd player adjustbonusblocks " + p.getName() + " " + reward);
+            String message = Utils.color("&7Someone voted... +"+reward+" bonus claim blocks!");
+            p.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(message));
         }
 
 

@@ -1,16 +1,18 @@
 package com.kryeit;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class Utils {
 
-    public static String color (String msg){
+    public static String color (String msg) {
         return ChatColor.translateAlternateColorCodes('&',msg);
     }
 
@@ -46,6 +48,18 @@ public class Utils {
 
     }
 
+    public static boolean isOffline(String name) {
+        return offlineNames().contains(name);
+    }
+
+    public static ArrayList<String> offlineNames() {
+        ArrayList<String> list = new ArrayList<>();
+        for(OfflinePlayer p : Bukkit.getServer().getOfflinePlayers()){
+            list.add(p.getName());
+        }
+        return list;
+    }
+
     public static String getTime(int secondsx) {
         int days = (int) TimeUnit.SECONDS.toDays(secondsx);
         int hours = (int) (TimeUnit.SECONDS.toHours(secondsx) - TimeUnit.DAYS.toHours(days));
@@ -55,15 +69,15 @@ public class Utils {
                 - TimeUnit.HOURS.toSeconds(hours) - TimeUnit.DAYS.toSeconds(days));
 
         if (days != 0) {
-            return days + "&6d&f, " + hours + "&6h&f, " + minutes + "&6m&f, " + seconds + "&6s&f";
+            return days + " &6days &f" + hours + " &6hours &f" + minutes + " &6minutes &f" + seconds + " &6seconds&f";
         } else {
             if (hours != 0) {
-                return hours + "&6h&f, " + minutes + "&6m&f, " + seconds + "&6s&f";
+                return hours + " &6hours &f" + minutes + " &6minutes &f" + seconds + " &6seconds&f";
             } else {
                 if (minutes != 0) {
-                    return minutes + "&6m&f, " + seconds + "&6s&f";
+                    return minutes + " &6minutes &f" + seconds + " &6seconds&f";
                 } else {
-                    return seconds + "&6s&f";
+                    return seconds + " &6seconds&f";
                 }
             }
 

@@ -13,9 +13,11 @@ public class onAFKToggle implements Listener {
 
     @EventHandler
     public void startAfk(AFKStartEvent e) {
-        Player p = Bukkit.getPlayer(e.getPlayer().getUUID()) ;
+        Player p = Bukkit.getPlayer(e.getPlayer().getUUID());
 
-        if(p.getGameMode().equals(GameMode.SPECTATOR)){
+        if(p == null) return;
+
+        if(p.getGameMode().equals(GameMode.SPECTATOR)) {
             return;
         }
 
@@ -23,9 +25,11 @@ public class onAFKToggle implements Listener {
     }
     @EventHandler
     public void stopAfk(AFKStopEvent e) {
-        Player p = Bukkit.getPlayer(e.getPlayer().getUUID()) ;
+        Player p = Bukkit.getPlayer(e.getPlayer().getUUID());
 
-        if(p.getGameMode().equals(GameMode.SPECTATOR)){
+        if(p == null) return;
+
+        if(p.getGameMode().equals(GameMode.SPECTATOR)) {
             return;
         }
 

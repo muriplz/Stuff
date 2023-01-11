@@ -10,12 +10,11 @@ import org.bukkit.entity.Player;
 public class SendCoords implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player cordSender)) {
             Bukkit.getConsoleSender().sendMessage( "You can't execute this command from console.");
             return false;
         }
 
-        Player cordSender = (Player) sender;
         int x = cordSender.getLocation().getBlockX();
         int y = cordSender.getLocation().getBlockY();
         int z = cordSender.getLocation().getBlockZ();

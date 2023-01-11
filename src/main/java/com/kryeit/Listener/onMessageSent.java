@@ -34,17 +34,17 @@ public class onMessageSent implements Listener {
 
     }
 
-    public static TextComponent getMessage(Player p, String message){
+    public static TextComponent getMessage(Player p, String message) {
 
         String name = p.getName();
         String color;
         String group;
 
-        if(isPlayerInGroup(p,"staff")){
+        if(isPlayerInGroup(p,"staff")) {
             color = "&a";
             group = "Staff";
         }
-        else if(isPlayerInGroup(p,"helper")){
+        else if(isPlayerInGroup(p,"helper")) {
             color = "&b";
             group = "Helper";
         }
@@ -52,11 +52,11 @@ public class onMessageSent implements Listener {
             color = "&6";
             group = "Collaborator";
         }
-        else if(isPlayerInGroup(p,"booster")){
+        else if(isPlayerInGroup(p,"booster")) {
             color = "&5";
             group = "Booster";
         }
-        else{
+        else {
             color = "&7";
             group = "Default";
         }

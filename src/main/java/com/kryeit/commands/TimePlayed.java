@@ -12,12 +12,10 @@ public class TimePlayed implements CommandExecutor {
     
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
+        if (!(sender instanceof Player p)) {
             Bukkit.getConsoleSender().sendMessage( "You can't execute this command from console.");
             return false;
         }
-
-        Player p = (Player) sender;
 
         if(args.length != 1) {
             p.sendMessage("You have to enter a player's name");
@@ -33,7 +31,7 @@ public class TimePlayed implements CommandExecutor {
 
         String time = Utils.getTime(player.getStatistic(Statistic.PLAY_ONE_MINUTE) / 20);
 
-        p.sendMessage(Utils.color("The player &6" + player.getName() + "&f has played for " + time));
+        p.sendMessage(Utils.color("&6" + player.getName() + "&f has played for " + time));
 
         return true;
 

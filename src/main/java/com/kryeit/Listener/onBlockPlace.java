@@ -24,40 +24,37 @@ public class onBlockPlace implements Listener {
             String ba = e.getBlockAgainst().getType().toString();
             if(ba.equals("CREATE_ITEM_VAULT") || ba.contains("BACKPACK")){
                 if(!Stuff.warned.contains(pl.getUniqueId())){
-                    pl.sendMessage(Utils.color("&aFunnels placed on vaults and backpacks causes lag issues. It's recommended to switch to other alternatives.\nIf you power the funnel with redstone it will be lag free."));
+                    pl.sendMessage(Utils.color("&aFunnels and Smart Chutes extracting from vaults and backpacks cause lag issues. It's recommended to switch to other alternatives.\nNote: If you power the funnel/smart chute with redstone it will be lag free."));
                     Stuff.warned.add(pl.getUniqueId());
                 }
             }
         }
 
-        if(!target().contains(b)){
-            return;
-        }
+        if(!target().contains(b)) return;
 
-        String mat="";
+        String material = "";
 
-        for(String s : target()){
-            if(s.equals(b)){
-                mat=s;
+        for(String s : target()) {
+            if(s.equals(b)) {
+                material = s;
                 break;
             }
         }
 
-        for(Player p : Bukkit.getOnlinePlayers()){
+        for(Player p : Bukkit.getOnlinePlayers()) {
 
             if(p.getGameMode().equals(GameMode.SPECTATOR)) continue;
 
-            if(!p.equals(pl) && p.getWorld().equals(pl.getWorld())){
-                if(p.getLocation().distance(e.getBlock().getLocation()) < 5){
-                    pl.sendMessage(Utils.color("&cYou cant place &6minecraft:"+ mat.toLowerCase()+"&c near another player"));
-                    e.setCancelled(true);
-                }
+            if(!p.equals(pl) && p.getWorld().equals(pl.getWorld())) continue;
+            if(p.getLocation().distance(e.getBlock().getLocation()) < 5) {
+                pl.sendMessage(Utils.color("&cYou cant place &6minecraft:"+ material.toLowerCase()+"&c near another player"));
+                e.setCancelled(true);
             }
 
         }
     }
 
-    public List<String> target(){
+    public List<String> target() {
         List<String> target = new ArrayList<>();
         target.add("FIRE");
         target.add("MAGMA_BLOCK");
