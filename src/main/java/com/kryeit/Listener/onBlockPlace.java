@@ -41,12 +41,18 @@ public class onBlockPlace implements Listener {
             }
         }
 
+        if(material.equals("")){
+            return;
+        }
+
         for(Player p : Bukkit.getOnlinePlayers()) {
 
             if(p.getGameMode().equals(GameMode.SPECTATOR)) continue;
 
-            if(!p.equals(pl) && p.getWorld().equals(pl.getWorld())) continue;
-            if(p.getLocation().distance(e.getBlock().getLocation()) < 5) {
+            if(p.getName().equals(pl.getName())) continue;
+
+            if(p.equals(pl) || p.getWorld().equals(pl.getWorld())) continue;
+            if(p.getLocation().distance(e.getBlock().getLocation()) < 5 && p.getWorld().equals(pl.getWorld())) {
                 pl.sendMessage(Utils.color("&cYou cant place &6minecraft:"+ material.toLowerCase()+"&c near another player"));
                 e.setCancelled(true);
             }

@@ -10,11 +10,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.ZoneOffset;
-import java.util.ArrayList;
+import java.util.Objects;
 import java.util.UUID;
 
 public class LastOnline implements CommandExecutor {
@@ -28,14 +26,14 @@ public class LastOnline implements CommandExecutor {
 
         if(Utils.isOffline(args[0]) && other == null) {
             for(OfflinePlayer offlinePlayer : Bukkit.getOfflinePlayers()) {
-                if(offlinePlayer.getName().equals(args[0])){
+                if(Objects.equals(offlinePlayer.getName(), args[0])) {
                     player.sendMessage(getMessage(offlinePlayer.getUniqueId(),offlinePlayer.getName()));
                     return true;
                 }
             }
         }
 
-        if(other == null){
+        if(other == null) {
             player.sendMessage("Player not found");
             return false;
         }
@@ -51,6 +49,8 @@ public class LastOnline implements CommandExecutor {
     }
 
     public String getMessage(UUID id , String name) {
+
+        if(GriefDefender.getCore().getUser(id).getPlayerData().getClaims().isEmpty()) return Utils.color("&6" + name + "&fdoesn't have any claim, therefore there are no records on the database");
         String howLong = "";
         StringBuilder sb = new StringBuilder();
         for(Claim claim : GriefDefender.getCore().getUser(id).getPlayerData().getClaims()) {
@@ -70,10 +70,9 @@ public class LastOnline implements CommandExecutor {
 
             howLong = Utils.getTimeBetween(lastonline,date);
 
-
             break;
         }
         return Utils.color("The last time &6" + name + "&f has been online is &6" + sb +
-                "&f, and has been offline for &6" + howLong);
+                "&f.\nOffline for: &6" + howLong);
     }
 }

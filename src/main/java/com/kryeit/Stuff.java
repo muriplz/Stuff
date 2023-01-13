@@ -1,8 +1,8 @@
 package com.kryeit;
 
 import com.kryeit.Listener.*;
-import com.kryeit.commands.*;
 import com.kryeit.commands.Map;
+import com.kryeit.commands.*;
 import net.lapismc.afkplus.api.AFKPlusPlayerAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;

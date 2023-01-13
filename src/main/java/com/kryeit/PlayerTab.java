@@ -7,7 +7,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PlayerTab implements TabCompleter {
@@ -26,16 +25,17 @@ public class PlayerTab implements TabCompleter {
             Bukkit.getOnlinePlayers().forEach(p -> allTabs.add(p.getName()));
 
             for(OfflinePlayer offlinePlayer : Stuff.offlinePlayers) {
+                if(offlinePlayer == null) continue;
                 allTabs.add(offlinePlayer.getName());
             }
 
             // Add to "completions" all words that have letters that are contained on "commands" list
             for (String allTab : allTabs) {
+                if(allTab == null) continue;
                 if (allTab.toLowerCase().startsWith(args[0].toLowerCase())) {
                     completions.add(allTab);
                 }
             }
-
             return completions;
         }
         return new ArrayList<>();

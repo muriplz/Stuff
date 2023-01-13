@@ -21,28 +21,50 @@ public class Utils {
     }
 
     public static String getTimeBetween(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
-        LocalDateTime tempDateTime = LocalDateTime.from( fromDateTime );
+        LocalDateTime tempDateTime = LocalDateTime.from(fromDateTime);
 
-        long years = tempDateTime.until( toDateTime, ChronoUnit.YEARS );
-        tempDateTime = tempDateTime.plusYears( years );
+        int years = (int) tempDateTime.until(toDateTime, ChronoUnit.YEARS);
+        tempDateTime = tempDateTime.plusYears(years);
 
-        long months = tempDateTime.until( toDateTime, ChronoUnit.MONTHS );
-        tempDateTime = tempDateTime.plusMonths( months );
+        int months = (int) tempDateTime.until(toDateTime, ChronoUnit.MONTHS);
+        tempDateTime = tempDateTime.plusMonths(months);
 
-        long days = tempDateTime.until( toDateTime, ChronoUnit.DAYS );
+        int days = (int) tempDateTime.until(toDateTime, ChronoUnit.DAYS);
+        tempDateTime = tempDateTime.plusMonths(days);
+
+        int hours = (int) tempDateTime.until(toDateTime, ChronoUnit.HOURS);
 
         StringBuilder time = new StringBuilder();
-        if( years != 0 ) {
-            time.append(years).append(" years ");
+        if(years != 0) {
+            if(years == 1) {
+                time.append(years).append(" year ");
+            }else{
+                time.append(years).append(" years ");
+            }
         }
-        if( months != 0 ) {
-            time.append(months).append(" months ");
+        if(months != 0) {
+            if(months == 1) {
+                time.append(years).append(" month ");
+            }else{
+                time.append(years).append(" months ");
+            }
         }
-        if( days != 0 ) {
-            time.append(days).append(" days ");
+        if(days != 0) {
+            if(days == 1) {
+                time.append(years).append(" day ");
+            }else{
+                time.append(years).append(" days ");
+            }
         }
-        if( years != 0 && months != 0 && days != 0) {
-            return "less than a day";
+        if(hours != 0) {
+            if(hours == 1) {
+                time.append(years).append(" hour ");
+            }else{
+                time.append(years).append(" hours ");
+            }
+        }
+        if(years == 0 && months == 0 && days == 0 && hours == 0) {
+            return "less than an hour";
         }
         return time.toString();
 
