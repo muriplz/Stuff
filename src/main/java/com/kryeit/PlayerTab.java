@@ -1,5 +1,6 @@
 package com.kryeit;
 
+import com.griefdefender.api.GriefDefender;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
@@ -11,10 +12,8 @@ import java.util.List;
 
 public class PlayerTab implements TabCompleter {
     @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        if(args.length == 1) {
-            // Initialize Lists
-
+    public List<String> onTabComplete (CommandSender sender, Command command, String label, String[] args) {
+        if (args.length == 1) {
             // completions is the returned Lists, starts empty
             List<String> completions = new ArrayList<>();
 
@@ -24,8 +23,8 @@ public class PlayerTab implements TabCompleter {
             // Get the name of all online players and add it to allTabs
             Bukkit.getOnlinePlayers().forEach(p -> allTabs.add(p.getName()));
 
-            for(OfflinePlayer offlinePlayer : Stuff.offlinePlayers) {
-                if(offlinePlayer == null) continue;
+            for (OfflinePlayer offlinePlayer : Stuff.offlinePlayers) {
+                if (GriefDefender.getCore().getUser(offlinePlayer.getUniqueId()).getPlayerData().getClaims().isEmpty()) continue;
                 allTabs.add(offlinePlayer.getName());
             }
 

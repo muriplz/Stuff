@@ -50,7 +50,7 @@ public class LastOnline implements CommandExecutor {
 
     public String getMessage(UUID id , String name) {
 
-        if(GriefDefender.getCore().getUser(id).getPlayerData().getClaims().isEmpty()) return Utils.color("&6" + name + "&fdoesn't have any claim, therefore there are no records on the database");
+        if(GriefDefender.getCore().getUser(id).getPlayerData().getClaims().isEmpty()) return Utils.color("&6" + name + "&f doesn't have any claim, therefore there are no records on the database");
         String howLong = "";
         StringBuilder sb = new StringBuilder();
         for(Claim claim : GriefDefender.getCore().getUser(id).getPlayerData().getClaims()) {

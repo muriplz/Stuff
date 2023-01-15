@@ -11,9 +11,7 @@ import java.util.List;
 public class BasicPlayerTab implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
-        if(args.length == 1) {
-            // Initialize Lists
-
+        if (args.length == 1) {
             // completions is the returned Lists, starts empty
             List<String> completions = new ArrayList<>();
 
