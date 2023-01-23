@@ -1,4 +1,4 @@
-package com.kryeit;
+package com.kryeit.tab;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;

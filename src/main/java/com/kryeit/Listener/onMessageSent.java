@@ -24,7 +24,7 @@ public class onMessageSent implements Listener {
         TextComponent t = getMessage(p,message);
         TextComponent t2 = new TextComponent(message);
 
-        if( message.contains("trapped") || message.contains("stuck") || message.contains("get out")){
+        if (message.contains("trapped") || message.contains("stuck") || message.contains("get out")) {
             p.sendMessage(Utils.color("&bIf you can't get out of somewhere, use /trapped"));
         }
 
