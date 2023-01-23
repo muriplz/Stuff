@@ -18,7 +18,7 @@ public class Map implements CommandExecutor {
         }
 
         TextComponent message = new TextComponent(Utils.color("Dynmap -> &9&nhttp://kryeit.com:8001/"));
-        message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://kryeit.com:8001/"));
+        message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://kryeit.com:8001/?zoom=6&playername=" + player.getName()));
         player.spigot().sendMessage(message);
         return true;
     }
