@@ -4,6 +4,7 @@ import com.kryeit.Utils;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -17,8 +18,11 @@ public class Map implements CommandExecutor {
             return false;
         }
 
+        Location l = player.getLocation();
+
         TextComponent message = new TextComponent(Utils.color("Dynmap -> &9&nhttp://kryeit.com:8001/"));
-        message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://kryeit.com:8001/?zoom=6&playername=" + player.getName()));
+        message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "http://kryeit.com:8001/?zoom=6&nopanel=true&nocompass=true&hidechat=true&x=" +
+                l.getBlockX() + "&z=" + l.getBlockZ()));
         player.spigot().sendMessage(message);
         return true;
     }
