@@ -11,20 +11,20 @@ import org.bukkit.entity.Player;
 public class TimePlayed implements CommandExecutor {
     
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    public boolean onCommand (CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player p)) {
             Bukkit.getConsoleSender().sendMessage( "You can't execute this command from console.");
             return false;
         }
 
-        if(args.length != 1) {
+        if (args.length != 1) {
             p.sendMessage("You have to enter a player's name");
             return false;
         }
 
         Player player = Bukkit.getPlayer(args[0]);
 
-        if(player == null) {
+        if (player == null) {
             p.sendMessage("Player not found");
             return false;
         }

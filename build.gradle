@@ -3,16 +3,18 @@ plugins {
 }
 
 group 'com.kryeit'
-version '1.1'
+version '1.2'
 
 repositories {
     mavenCentral()
-    maven { url "https://hub.spigotmc.org/nexus/content/repositories/snapshots"}
     maven {
-        name = 'griefdefender'
+        name = 'Spigot'
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots'
+    }
+    maven {
+        name = 'GriefDefender'
         url = 'https://repo.glaremasters.me/repository/bloodshot'
     }
-
 }
 
 dependencies {

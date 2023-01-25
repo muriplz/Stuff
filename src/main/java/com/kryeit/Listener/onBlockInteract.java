@@ -21,21 +21,21 @@ public class onBlockInteract implements Listener {
         String material = "";
         boolean condition = false;
 
-        for(String mat : target()) {
-            if(!Objects.requireNonNull(e.getItem()).toString().contains(mat)) continue;
+        for (String mat : target()) {
+            if (!Objects.requireNonNull(e.getItem()).toString().contains(mat)) continue;
 
             material = mat;
             condition = true;
             break;
         }
 
-        if(!condition) return;
+        if (!condition) return;
 
         double distance = 0;
-        for(Player p : Bukkit.getOnlinePlayers()) {
-            if(p.equals(e.getPlayer()) || p.getWorld().equals(e.getPlayer().getWorld())) continue;
+        for (Player p : Bukkit.getOnlinePlayers()) {
+            if (p.equals(e.getPlayer()) || p.getWorld().equals(e.getPlayer().getWorld())) continue;
             distance = p.getLocation().distance(e.getPlayer().getLocation());
-            if(distance < 8) {
+            if (distance < 8) {
                 e.getPlayer().sendMessage(Utils.color("&cYou cant interact with &6minecraft:"
                         + material.toLowerCase() + "&c near another player"));
                 e.setCancelled(true);
@@ -44,7 +44,7 @@ public class onBlockInteract implements Listener {
         }
     }
 
-    public List<String> target(){
+    public List<String> target () {
         List<String> target = new ArrayList<>();
         target.add("LAVA_BUCKET");
         target.add("END_CRYSTAL");

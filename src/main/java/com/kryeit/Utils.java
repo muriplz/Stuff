@@ -44,23 +44,23 @@ public class Utils {
         }
         if(months != 0) {
             if(months == 1) {
-                time.append(years).append(" month ");
+                time.append(months).append(" month ");
             }else{
-                time.append(years).append(" months ");
+                time.append(months).append(" months ");
             }
         }
         if(days != 0) {
             if(days == 1) {
-                time.append(years).append(" day ");
+                time.append(days).append(" day ");
             }else{
-                time.append(years).append(" days ");
+                time.append(days).append(" days ");
             }
         }
         if(hours != 0) {
             if(hours == 1) {
-                time.append(years).append(" hour ");
+                time.append(hours).append(" hour ");
             }else{
-                time.append(years).append(" hours ");
+                time.append(hours).append(" hours ");
             }
         }
         if(years == 0 && months == 0 && days == 0 && hours == 0) {

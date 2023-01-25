@@ -16,7 +16,7 @@ public class VotingReward implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if(args.length != 2) return false;
+        if (args.length != 2) return false;
 
         String name = args[0];
         Player player = Bukkit.getPlayer(name);
@@ -26,7 +26,7 @@ public class VotingReward implements CommandExecutor {
         AFKPlusPlayer afkPlusPlayer;
         int reward = Integer.parseInt(args[1]);
 
-        for(Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
             if(p.getName().equals(name)) continue;
 
             afkPlusPlayer = afkPlusPlayerAPI.getPlayer(p.getUniqueId());

@@ -34,25 +34,25 @@ public class onBlockPlace implements Listener {
 
         String material = "";
 
-        for(String s : target()) {
+        for (String s : target()) {
             if(s.equals(b)) {
                 material = s;
                 break;
             }
         }
 
-        if(material.equals("")){
+        if (material.equals("")) {
             return;
         }
 
-        for(Player p : Bukkit.getOnlinePlayers()) {
+        for (Player p : Bukkit.getOnlinePlayers()) {
 
-            if(p.getGameMode().equals(GameMode.SPECTATOR)) continue;
+            if (p.getGameMode().equals(GameMode.SPECTATOR)) continue;
 
-            if(p.getName().equals(pl.getName())) continue;
+            if (p.getName().equals(pl.getName())) continue;
 
-            if(p.equals(pl) || p.getWorld().equals(pl.getWorld())) continue;
-            if(p.getLocation().distance(e.getBlock().getLocation()) < 5 && p.getWorld().equals(pl.getWorld())) {
+            if (p.equals(pl) || p.getWorld().equals(pl.getWorld())) continue;
+            if (p.getLocation().distance(e.getBlock().getLocation()) < 5 && p.getWorld().equals(pl.getWorld())) {
                 pl.sendMessage(Utils.color("&cYou cant place &6minecraft:"+ material.toLowerCase()+"&c near another player"));
                 e.setCancelled(true);
             }
@@ -60,7 +60,7 @@ public class onBlockPlace implements Listener {
         }
     }
 
-    public List<String> target() {
+    public List<String> target () {
         List<String> target = new ArrayList<>();
         target.add("FIRE");
         target.add("MAGMA_BLOCK");

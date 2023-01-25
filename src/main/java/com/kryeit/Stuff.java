@@ -9,6 +9,10 @@ import com.kryeit.tab.ReturnEmptyTab;
 import net.lapismc.afkplus.api.AFKPlusPlayerAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.TabCompleter;
+import org.bukkit.event.Listener;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
@@ -19,15 +23,13 @@ public class Stuff extends JavaPlugin {
     public static List<UUID> sent;
     public static Stuff instance;
     public static List<UUID> warned;
-    public static Set<OfflinePlayer> offlinePlayers;
+    public static ArrayList<String> offlinePlayers;
 
-    public void onEnable() {
+    public void onEnable () {
 
         sent = new ArrayList<>();
 
-        offlinePlayers = new HashSet<>();
-
-        offlinePlayers.addAll(Arrays.asList(Bukkit.getServer().getOfflinePlayers()));
+        offlinePlayers = new ArrayList<>();
 
         afkPlusPlayerAPI = new AFKPlusPlayerAPI();
 
@@ -35,46 +37,43 @@ public class Stuff extends JavaPlugin {
 
         instance = this;
 
-        getServer().getPluginManager().registerEvents(new onMessageSent(), this);
-        getServer().getPluginManager().registerEvents(new onAFKToggle(), this);
-        getServer().getPluginManager().registerEvents(new onJoin(), this);
-        getServer().getPluginManager().registerEvents(new onBlockPlace(), this);
-        getServer().getPluginManager().registerEvents(new onBlockInteract(), this);
-        getServer().getPluginManager().registerEvents(new onWeatherChange(), this);
-
+        registerEvent(new onMessageSent());
+        registerEvent(new onAFKToggle());
+        registerEvent(new onJoin());
+        registerEvent(new onBlockPlace());
+        registerEvent(new onBlockInteract());
+        registerEvent(new onWeatherChange());
 
         Objects.requireNonNull(getCommand("vr")).setExecutor(new VotingReward());
 
-        Objects.requireNonNull(getCommand("online")).setExecutor(new Online());
-        Objects.requireNonNull(getCommand("online")).setTabCompleter(new ReturnEmptyTab());
+        registerBasicCommand("online", new Online());
+        registerBasicCommand("discord", new Discord());
+        registerBasicCommand("forum", new Forum());
+        registerBasicCommand("rules", new Rules());
+        registerBasicCommand("map", new Map());
+        registerBasicCommand("vote", new Vote());
+        registerBasicCommand("patreon", new Patreon());
 
-        Objects.requireNonNull(getCommand("discord")).setExecutor(new Discord());
-        Objects.requireNonNull(getCommand("discord")).setTabCompleter(new ReturnEmptyTab());
+        registerCommand("sendcoords", new SendCoords(), new BasicPlayerTab());
+        registerCommand("timeplayed", new TimePlayed(), new BasicPlayerTab());
 
-        Objects.requireNonNull(getCommand("forum")).setExecutor(new Forum());
-        Objects.requireNonNull(getCommand("forum")).setTabCompleter(new ReturnEmptyTab());
+        registerCommand("lastonline", new LastOnline(), new PlayerTab());
 
-        Objects.requireNonNull(getCommand("rules")).setExecutor(new Rules());
-        Objects.requireNonNull(getCommand("rules")).setTabCompleter(new ReturnEmptyTab());
 
-        Objects.requireNonNull(getCommand("map")).setExecutor(new Map());
-        Objects.requireNonNull(getCommand("map")).setTabCompleter(new ReturnEmptyTab());
+    }
 
-        Objects.requireNonNull(getCommand("sendcoords")).setExecutor(new SendCoords());
-        Objects.requireNonNull(getCommand("sendcoords")).setTabCompleter(new BasicPlayerTab());
+    public void registerEvent (Listener listener) {
+        getServer().getPluginManager().registerEvents(listener,this);
+    }
 
-        Objects.requireNonNull(getCommand("vote")).setExecutor(new Vote());
-        Objects.requireNonNull(getCommand("vote")).setTabCompleter(new ReturnEmptyTab());
+    public void registerCommand (String command, CommandExecutor commandExecutor, TabCompleter tabCompleter) {
+        Objects.requireNonNull(getCommand(command)).setExecutor(commandExecutor);
+        Objects.requireNonNull(getCommand(command)).setTabCompleter(tabCompleter);
+    }
 
-        Objects.requireNonNull(getCommand("patreon")).setExecutor(new Patreon());
-        Objects.requireNonNull(getCommand("patreon")).setTabCompleter(new ReturnEmptyTab());
-
-        Objects.requireNonNull(getCommand("timeplayed")).setExecutor(new TimePlayed());
-        Objects.requireNonNull(getCommand("timeplayed")).setTabCompleter(new BasicPlayerTab());
-
-        Objects.requireNonNull(getCommand("lastonline")).setExecutor(new LastOnline());
-        Objects.requireNonNull(getCommand("lastonline")).setTabCompleter(new PlayerTab());
-
+    public void registerBasicCommand (String command, CommandExecutor commandExecutor) {
+        Objects.requireNonNull(getCommand(command)).setExecutor(commandExecutor);
+        Objects.requireNonNull(getCommand(command)).setTabCompleter(new ReturnEmptyTab());
     }
 
     public void onDisable() {
