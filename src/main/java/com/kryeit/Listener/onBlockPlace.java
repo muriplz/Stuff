@@ -49,9 +49,10 @@ public class onBlockPlace implements Listener {
 
             if (p.getGameMode().equals(GameMode.SPECTATOR)) continue;
 
-            if (p.getName().equals(pl.getName())) continue;
+            if (p.equals(pl)) continue;
 
-            if (p.equals(pl) || p.getWorld().equals(pl.getWorld())) continue;
+            if (!p.getWorld().equals(pl.getWorld())) continue;
+
             if (p.getLocation().distance(e.getBlock().getLocation()) < 5 && p.getWorld().equals(pl.getWorld())) {
                 pl.sendMessage(Utils.color("&cYou cant place &6minecraft:"+ material.toLowerCase()+"&c near another player"));
                 e.setCancelled(true);

@@ -35,35 +35,35 @@ public class Utils {
         int hours = (int) tempDateTime.until(toDateTime, ChronoUnit.HOURS);
 
         StringBuilder time = new StringBuilder();
-        if(years != 0) {
-            if(years == 1) {
+        if (years != 0) {
+            if (years == 1) {
                 time.append(years).append(" year ");
-            }else{
+            } else {
                 time.append(years).append(" years ");
             }
         }
-        if(months != 0) {
-            if(months == 1) {
+        if (months != 0) {
+            if (months == 1) {
                 time.append(months).append(" month ");
-            }else{
+            } else {
                 time.append(months).append(" months ");
             }
         }
-        if(days != 0) {
-            if(days == 1) {
+        if (days != 0) {
+            if (days == 1) {
                 time.append(days).append(" day ");
-            }else{
+            } else {
                 time.append(days).append(" days ");
             }
         }
-        if(hours != 0) {
-            if(hours == 1) {
+        if (hours != 0) {
+            if (hours == 1) {
                 time.append(hours).append(" hour ");
-            }else{
+            } else {
                 time.append(hours).append(" hours ");
             }
         }
-        if(years == 0 && months == 0 && days == 0 && hours == 0) {
+        if (years == 0 && months == 0 && days == 0 && hours == 0) {
             return "less than an hour";
         }
         return time.toString();

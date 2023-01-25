@@ -2,6 +2,7 @@ package com.kryeit.Listener;
 
 import com.kryeit.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -33,7 +34,12 @@ public class onBlockInteract implements Listener {
 
         double distance = 0;
         for (Player p : Bukkit.getOnlinePlayers()) {
-            if (p.equals(e.getPlayer()) || p.getWorld().equals(e.getPlayer().getWorld())) continue;
+            if (p.getGameMode().equals(GameMode.SPECTATOR)) continue;
+
+            if (p.equals(e.getPlayer())) continue;
+
+            if (!p.getWorld().equals(e.getPlayer().getWorld())) continue;
+
             distance = p.getLocation().distance(e.getPlayer().getLocation());
             if (distance < 8) {
                 e.getPlayer().sendMessage(Utils.color("&cYou cant interact with &6minecraft:"

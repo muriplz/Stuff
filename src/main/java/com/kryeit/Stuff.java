@@ -20,14 +20,14 @@ import java.util.*;
 public class Stuff extends JavaPlugin {
 
     public static AFKPlusPlayerAPI afkPlusPlayerAPI;
-    public static List<UUID> sent;
+    public static List<UUID> sentTrapped;
     public static Stuff instance;
     public static List<UUID> warned;
     public static ArrayList<String> offlinePlayers;
 
     public void onEnable () {
 
-        sent = new ArrayList<>();
+        sentTrapped = new ArrayList<>();
 
         offlinePlayers = new ArrayList<>();
 
