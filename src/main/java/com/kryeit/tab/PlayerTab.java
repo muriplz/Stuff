@@ -24,13 +24,15 @@ public class PlayerTab implements TabCompleter {
             // Get the name of all online players and add it to allTabs
             Bukkit.getOnlinePlayers().forEach(p -> allTabs.add(p.getName()));
 
-            if (Stuff.offlinePlayers.isEmpty()) {
+            List <String> offlinePlayers = Stuff.getInstance().offlinePlayers;
+
+            if (offlinePlayers.isEmpty()) {
                 for (OfflinePlayer offlinePlayer : Bukkit.getOfflinePlayers()) {
                     if (offlinePlayer == null) continue;
-                    if (!GriefDefender.getCore().getUser(offlinePlayer.getUniqueId()).getPlayerData().getClaims().isEmpty()) Stuff.offlinePlayers.add(offlinePlayer.getName());
+                    if (!GriefDefender.getCore().getUser(offlinePlayer.getUniqueId()).getPlayerData().getClaims().isEmpty()) offlinePlayers.add(offlinePlayer.getName());
                 }
             } else {
-                allTabs.addAll(Stuff.offlinePlayers);
+                allTabs.addAll(offlinePlayers);
             }
 
             // Add to "completions" all words that have letters that are contained on "commands" list

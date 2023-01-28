@@ -23,9 +23,9 @@ public class onBlockPlace implements Listener {
         if(b.equals("CREATE_BRASS_BELT_FUNNEL") || b.equals("CREATE_BRASS_FUNNEL") || b.equals("CREATE_SMART_CHUTE")){
             String ba = e.getBlockAgainst().getType().toString();
             if(ba.equals("CREATE_ITEM_VAULT") || ba.contains("BACKPACK")){
-                if(!Stuff.warned.contains(pl.getUniqueId())){
+                if(!Stuff.getInstance().warned.contains(pl.getUniqueId())){
                     pl.sendMessage(Utils.color("&aFunnels and Smart Chutes extracting from vaults and backpacks cause lag issues. It's recommended to switch to other alternatives.\nNote: If you power the funnel/smart chute with redstone it will be lag free."));
-                    Stuff.warned.add(pl.getUniqueId());
+                    Stuff.getInstance().warned.add(pl.getUniqueId());
                 }
             }
         }

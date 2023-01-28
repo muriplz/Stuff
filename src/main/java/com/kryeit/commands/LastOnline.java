@@ -22,6 +22,12 @@ public class LastOnline implements CommandExecutor {
             Bukkit.getConsoleSender().sendMessage( "You can't execute this command from console.");
             return false;
         }
+
+        if(args.length != 1) {
+            player.sendMessage("Usage: /lastonline <Player>");
+            return false;
+        }
+        
         Player other = Bukkit.getPlayer(args[0]);
 
         if(Utils.isOffline(args[0]) && other == null) {
