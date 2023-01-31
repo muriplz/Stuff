@@ -7,12 +7,9 @@ import com.kryeit.tab.BasicPlayerTab;
 import com.kryeit.tab.PlayerTab;
 import com.kryeit.tab.ReturnEmptyTab;
 import net.lapismc.afkplus.api.AFKPlusPlayerAPI;
-import org.bukkit.Bukkit;
-import org.bukkit.OfflinePlayer;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.*;
@@ -23,6 +20,7 @@ public class Stuff extends JavaPlugin {
     public final List<UUID> sentTrapped = new ArrayList<>();
     public static Stuff instance;
     public final List<UUID> warned = new ArrayList<>();
+    public final List<UUID> flyEnabled = new ArrayList<>();
     public final List<String> offlinePlayers = new ArrayList<>();
 
     public void onEnable () {
@@ -45,6 +43,7 @@ public class Stuff extends JavaPlugin {
         registerBasicCommand("map", new Map());
         registerBasicCommand("vote", new Vote());
         registerBasicCommand("patreon", new Patreon());
+        registerBasicCommand("fly", new Fly());
 
         registerCommand("sendcoords", new SendCoords(), new BasicPlayerTab());
         registerCommand("timeplayed", new TimePlayed(), new BasicPlayerTab());

@@ -9,7 +9,7 @@ commands:
     description: Voting for my server rewards
   online:
     description: online players
-    permission: chatnames.online
+    permission: stuff.online
   discord:
     description: sends discord link
   forum:
@@ -30,3 +30,6 @@ commands:
     description: shows time played
   lastonline:
     description: shows last time online
+  fly:
+    description: makes you fly
+    permission: stuff.fly
