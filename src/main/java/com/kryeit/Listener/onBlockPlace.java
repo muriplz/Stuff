@@ -20,11 +20,11 @@ public class onBlockPlace implements Listener {
         String b = e.getBlock().getType().toString();
         Player pl = e.getPlayer();
 
-        if(b.equals("CREATE_BRASS_BELT_FUNNEL") || b.equals("CREATE_BRASS_FUNNEL") || b.equals("CREATE_SMART_CHUTE")){
+        if(b.equals("CREATE_ANDESITE_BELT_FUNNEL") || b.equals("CREATE_ANDESITE_FUNNEL") || b.equals("CREATE_BRASS_BELT_FUNNEL") || b.equals("CREATE_BRASS_FUNNEL") || b.equals("CREATE_SMART_CHUTE") || b.equals("CREATE_CHUTE")) {
             String ba = e.getBlockAgainst().getType().toString();
-            if(ba.equals("CREATE_ITEM_VAULT") || ba.contains("BACKPACK")){
-                if(!Stuff.getInstance().warned.contains(pl.getUniqueId())){
-                    pl.sendMessage(Utils.color("&aFunnels and Smart Chutes extracting from vaults and backpacks cause lag issues. It's recommended to switch to other alternatives.\nNote: If you power the funnel/smart chute with redstone it will be lag free."));
+            if(ba.equals("CREATE_ITEM_VAULT") || ba.contains("BACKPACK")) {
+                if(!Stuff.getInstance().warned.contains(pl.getUniqueId())) {
+                    pl.sendMessage(Utils.color("&aFunnels and Chutes extracting from vaults and backpacks cause lag issues. It's recommended to switch to other alternatives.\nNote: If you power the brass funnel/chute with redstone it will be lag free."));
                     Stuff.getInstance().warned.add(pl.getUniqueId());
                 }
             }
