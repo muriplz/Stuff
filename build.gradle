@@ -15,6 +15,9 @@ repositories {
         name = 'GriefDefender'
         url = 'https://repo.glaremasters.me/repository/bloodshot'
     }
+    maven{
+        url = 'https://maven.enginehub.org/repo/'
+    }
 }
 
 dependencies {

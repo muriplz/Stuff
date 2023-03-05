@@ -33,3 +33,6 @@ commands:
   fly:
     description: makes you fly
     permission: stuff.fly
+  mute:
+    description: mutes players
+    permission: stuff.mute

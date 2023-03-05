@@ -41,7 +41,7 @@ public class onBlockInteract implements Listener {
             if (!p.getWorld().equals(e.getPlayer().getWorld())) continue;
 
             distance = p.getLocation().distance(e.getPlayer().getLocation());
-            if (distance < 8) {
+            if (distance < 10) {
                 e.getPlayer().sendMessage(Utils.color("&cYou cant interact with &6minecraft:"
                         + material.toLowerCase() + "&c near another player"));
                 e.setCancelled(true);
