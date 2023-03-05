@@ -36,3 +36,6 @@ commands:
   mute:
     description: mutes players
     permission: stuff.mute
+  getinventory:
+    description: gets a player inventory
+    permission: stuff.getinventory
