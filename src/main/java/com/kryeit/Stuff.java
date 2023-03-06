@@ -10,8 +10,12 @@ import com.kryeit.tab.PlayerTab;
 import com.kryeit.tab.ReturnEmptyTab;
 import net.lapismc.afkplus.api.AFKPlusPlayerAPI;
 import org.bukkit.Bukkit;
+import org.bukkit.World;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.TabCompleter;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Phantom;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -27,6 +31,8 @@ public class Stuff extends JavaPlugin {
     public final List<UUID> warned = new ArrayList<>();
     public final List<UUID> flyEnabled = new ArrayList<>();
     public final List<String> offlinePlayers = new ArrayList<>();
+    public HashMap<World, Integer> phantomCountMap = new HashMap<>();
+    public int maxPhantomCount = 15;
 
     public DiskMap softMuted;
     public DiskMap hardMuted;
@@ -45,6 +51,7 @@ public class Stuff extends JavaPlugin {
         registerEvent(new onBlockInteract());
         registerEvent(new onWeatherChange());
         registerEvent(new onMutedMessage());
+        registerEvent(new onPhantomSpawn());
 
         Objects.requireNonNull(getCommand("vr")).setExecutor(new VotingReward());
 
@@ -65,7 +72,6 @@ public class Stuff extends JavaPlugin {
         registerCommand("lastonline", new LastOnline(), new PlayerTab());
 
         unmutePlayers();
-
     }
 
     public void registerEvent (Listener listener) {
@@ -117,6 +123,7 @@ public class Stuff extends JavaPlugin {
     }
 
     public void onDisable() {
+        phantomCountMap.clear();
     }
 
     public static Stuff getInstance() {
