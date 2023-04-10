@@ -16,7 +16,7 @@ public class onInvInteract implements Listener {
         Player p = (Player) event.getWhoClicked();
         if(p.hasPermission("group.staff") && !p.getName().equals("Satoryc")) return;
 
-        String itemStack = Objects.requireNonNull(event.getCurrentItem()).toString();
+        String itemStack = event.getCurrentItem().toString();
 
         if(itemStack == null) return;
 
