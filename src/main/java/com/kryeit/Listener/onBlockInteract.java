@@ -30,6 +30,15 @@ public class onBlockInteract implements Listener {
             break;
         }
 
+        String item = e.getItem().toString();
+
+        if((item.contains("SPAWN_EGG") || item.contains("CREATIVE")) && !e.getPlayer().hasPermission("group.staff")) {
+            Utils.broadcast("&6" +e.getPlayer().getName() + " &fhas used "+item+" and got banned from the server. ");
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ban " + e.getPlayer().getName() + " spawn eggs are not allowed on this server");
+            Utils.transferAllClaimsToMe(e.getPlayer());
+            e.setCancelled(true);
+        }
+
         if (!condition) return;
 
         double distance = 0;

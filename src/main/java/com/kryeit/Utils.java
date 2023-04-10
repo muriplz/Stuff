@@ -1,5 +1,9 @@
 package com.kryeit;
 
+import com.griefdefender.api.GriefDefender;
+import com.griefdefender.api.claim.Claim;
+import com.griefdefender.api.claim.ClaimGroup;
+import com.griefdefender.lib.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -8,6 +12,8 @@ import org.bukkit.entity.Player;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 public class Utils {
@@ -18,6 +24,20 @@ public class Utils {
 
     public static boolean isPlayerInGroup(Player player, String group) {
         return player.hasPermission("group." + group);
+    }
+
+    public static void transferAllClaimsToMe(Player p) {
+        List<Claim> claims= GriefDefender.getCore().getAllPlayerClaims(p.getUniqueId());
+        ClaimGroup claimGroup = ClaimGroup.builder().description(Component.text(p.getName() + "'s claims")).name(p.getName()).build();
+        for (Claim claim : claims) {
+            claim.transferOwner(UUID.fromString("c637c833-8821-42a8-9c0f-28a3c62d4017"));
+            claim.getData().setClaimGroupUniqueId(claimGroup.getUniqueId());
+        }
+        broadcast("All claims have been transferred successfully");
+    }
+
+    public static void broadcast(String message) {
+        Bukkit.broadcastMessage(color(message));
     }
 
     public static String getTimeBetween(LocalDateTime fromDateTime, LocalDateTime toDateTime) {

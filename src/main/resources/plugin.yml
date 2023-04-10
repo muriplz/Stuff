@@ -18,6 +18,8 @@ commands:
     description: sends rules link
   sendcoords:
     description: sends your cords to the player
+    aliases:
+      - sharecoords
   map:
     description: shows dynmap url
   vote:
@@ -36,6 +38,9 @@ commands:
   mute:
     description: mutes players
     permission: stuff.mute
-  getinventory:
+  invsee:
     description: gets a player inventory
-    permission: stuff.getinventory
+    permission: stuff.invsee
+  enderinvsee:
+    description: gets a player enderchest
+    permission: stuff.enderinvsee

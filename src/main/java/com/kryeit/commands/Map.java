@@ -20,9 +20,9 @@ public class Map implements CommandExecutor {
 
         Location l = player.getLocation();
 
-        TextComponent message = new TextComponent(Utils.color("Dynmap -> &9&nhttp://kryeit.com:8001/"));
+        TextComponent message = new TextComponent(Utils.color("Dynmap -> &9&nhttp://dynmap.kryeit.com/"));
         message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
-                "http://kryeit.com:8001/?zoom=6&nopanel=true&nocompass=true&hidechat=true&x=" +
+                "http://dynmap.kryeit.com/?zoom=6&nopanel=true&nocompass=true&hidechat=true&x=" +
                 l.getBlockX() + "&z=" + l.getBlockZ()));
         player.spigot().sendMessage(message);
         return true;

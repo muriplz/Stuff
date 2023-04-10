@@ -2,11 +2,6 @@ package com.kryeit.Listener;
 
 import com.kryeit.Stuff;
 import com.kryeit.Utils;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.hover.content.Text;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,9 +16,6 @@ public class onMessageSent implements Listener {
         String message = e.getMessage();
         Player p = e.getPlayer();
 
-        TextComponent t = getMessage(p,message);
-        TextComponent t2 = new TextComponent(message);
-
         if (message.contains("trapped") || message.contains("stuck") || message.contains("get out")) {
             if (!Stuff.getInstance().sentTrapped.contains(p.getUniqueId())){
                 p.sendMessage(Utils.color("&bIf you can't get out of somewhere, use /trapped"));
@@ -31,13 +23,16 @@ public class onMessageSent implements Listener {
             }
         }
 
-        e.setCancelled(true);
-
-        Stuff.getInstance().getServer().spigot().broadcast(t,t2);
+        if(!p.hasPermission("stuff.muted") || p.isOp()) {
+            e.setFormat(Utils.color(getColouredName(p) + "&f: " + message));
+        } else {
+            e.setCancelled(true);
+            p.sendMessage("You are soft muted from the general chat.");
+        }
 
     }
 
-    public static TextComponent getMessage(Player p, String message) {
+    public static String getColouredName(Player p) {
 
         String name = p.getName();
         String color;
@@ -64,20 +59,6 @@ public class onMessageSent implements Listener {
             group = "Default";
         }
 
-        String temp = Utils.color(color + name + "&f: ");
-        String hover = Utils.color(name + "'s rank is "
-                + color + group + "&7\n\nClick to whisper");
-
-        Bukkit.getConsoleSender().sendMessage(temp + message);
-
-        TextComponent t = new TextComponent(temp);
-
-        t.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(hover)));
-
-        t.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND,
-                "/m " + name + " "));
-
-        return t;
-
+        return color + name;
     }
 }

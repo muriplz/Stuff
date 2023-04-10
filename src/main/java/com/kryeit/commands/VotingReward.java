@@ -16,6 +16,7 @@ public class VotingReward implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
+        if(sender instanceof Player) return false;
         if (args.length != 2) return false;
 
         String name = args[0];

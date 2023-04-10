@@ -29,6 +29,21 @@ public class onBlockPlace implements Listener {
                 }
             }
         }
+        String ba = e.getBlockAgainst().getType().toString();
+        if(ba.equals("CREATE_CREATIVE_CRATE")) {
+            Utils.broadcast("&6" +pl.getName() + " &fhas placed something facing a creative crate and got banned from the server. They didnt expect this one lmaooo");
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ban " + pl.getName() + " Creative Crates are not allowed on this server");
+            Utils.transferAllClaimsToMe(pl);
+            e.setCancelled(true);
+
+        }
+
+        if(b.equals("CREATE_CREATIVE_CRATE")) {
+            Utils.broadcast("&6" + pl.getName() + "&f has placed a creative crate and got banned from the server");
+            Utils.transferAllClaimsToMe(pl);
+            e.setCancelled(true);
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "ban " + pl.getName() + " Creative Crates are not allowed on this server");
+        }
 
         if(!target().contains(b)) return;
 
