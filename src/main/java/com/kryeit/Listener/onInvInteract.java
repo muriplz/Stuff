@@ -14,9 +14,9 @@ public class onInvInteract implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         Player p = (Player) event.getWhoClicked();
-        if(p.hasPermission("group.staff") && !p.getName().equals("Satoryc")) return;
+        if(p.getName().equals("MuriPlz")) return;
 
-        String itemStack = event.getCurrentItem().toString();
+        String itemStack = Objects.requireNonNull(event.getCurrentItem()).toString();
 
         if(itemStack == null) return;
 

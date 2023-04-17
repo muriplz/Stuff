@@ -1,9 +1,7 @@
 package com.kryeit.Listener;
 
 import com.griefdefender.api.GriefDefender;
-import com.griefdefender.api.User;
 import com.griefdefender.api.claim.Claim;
-import org.bukkit.Material;
 import org.bukkit.entity.Chicken;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

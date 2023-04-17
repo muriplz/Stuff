@@ -20,10 +20,11 @@ public class Map implements CommandExecutor {
 
         Location l = player.getLocation();
 
-        TextComponent message = new TextComponent(Utils.color("Dynmap -> &9&nhttp://dynmap.kryeit.com/"));
+        TextComponent message = new TextComponent(Utils.color("Dynmap -> &9&nhttps://map.kryeit.com/"));
         message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
-                "http://dynmap.kryeit.com/?zoom=6&nopanel=true&nocompass=true&hidechat=true&x=" +
-                l.getBlockX() + "&z=" + l.getBlockZ()));
+                "https://map.kryeit.com/#world:" +
+                l.getBlockX() + ":" + l.getBlockY() + ":" + l.getBlockZ() + ":" + l.getYaw() + ":" + l.getPitch() +
+                ":0:0:0:free"));
         player.spigot().sendMessage(message);
         return true;
     }

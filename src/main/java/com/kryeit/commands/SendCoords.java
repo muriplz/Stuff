@@ -1,6 +1,7 @@
 package com.kryeit.commands;
 
-import com.kryeit.Utils;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.*;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -11,7 +12,7 @@ public class SendCoords implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player cordSender)) {
-            Bukkit.getConsoleSender().sendMessage( "You can't execute this command from console.");
+            Bukkit.getConsoleSender().sendMessage("You can't execute this command from console.");
             return false;
         }
 
@@ -31,10 +32,26 @@ public class SendCoords implements CommandExecutor {
             return false;
         }
 
-        String cord = "(" + x + " , " + y + " , " + z + ")";
-        cordReciever.sendMessage(Utils.color("&6" + cordSender.getName() + "&f has sent you the current coords: &6" + cord));
-        cordSender.sendMessage(Utils.color("&6" + cordReciever.getName() + " &fhas recieved your coords."));
-        return true;
+        BaseComponent[] components = new ComponentBuilder("")
+                .append(new TextComponent(cordSender.getName()))
+                .color(ChatColor.GOLD)
+                .bold(true)
+                .append(" has sent you the current coords: ")
+                .color(ChatColor.WHITE)
+                .append(new TextComponent("(" + x + ", " + y + ", " + z + ")"))
+                .color(ChatColor.GOLD)
+                .underlined(true)
+                .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Click to see in Dynmap")
+                        .color(ChatColor.LIGHT_PURPLE)
+                        .create()))
+                .event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://map.kryeit.com/#world:" +
+        x + ":" + y + ":" + z + ":" + cordSender.getLocation().getYaw() + ":" + cordSender.getLocation().getPitch() +
+                ":0:0:0"))
+                .create();
 
+        cordReciever.spigot().sendMessage(components);
+        cordSender.sendMessage(ChatColor.GOLD + cordReciever.getName() + ChatColor.WHITE + " has received your coords.");
+        return true;
     }
 }
+

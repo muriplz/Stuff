@@ -14,11 +14,15 @@ public class onJoin implements Listener {
 
         Player p = e.getPlayer();
 
+        if(p.hasPermission("group.kryeitor")) {
+            p.setPlayerListName(Utils.color("&6&l⚙ &r" + p.getName()));
+        }
+
         if (p.hasPlayedBefore()) return;
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.getName().equals(p.getName())) {
-                p.sendMessage(Utils.color("&bWelcome to Kryeit! see /rules"));
+                p.sendMessage(Utils.color("&bWelcome to Kryeit! see /rules and /posthelp for additional information."));
                 continue;
             }
             player.sendMessage(Utils.color("&b" + p.getName()

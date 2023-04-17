@@ -24,6 +24,9 @@ public class VotingReward implements CommandExecutor {
 
         if(player == null) return false;
 
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "gd player adjustbonusblocks " + player.getName() + " " + 100);
+        player.sendMessage(Utils.color("&7You voted! +100 bonus claim blocks!"));
+
         AFKPlusPlayer afkPlusPlayer;
         int reward = Integer.parseInt(args[1]);
 

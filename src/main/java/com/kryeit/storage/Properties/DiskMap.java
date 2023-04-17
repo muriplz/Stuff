@@ -10,6 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.*;
 
+// Made by MrRedRhino
+
 public class DiskMap implements Map<byte[], byte[]> {
     private final Path file;
     private Map<ByteArray, byte[]> data = new HashMap<>();

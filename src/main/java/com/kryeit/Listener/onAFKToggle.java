@@ -20,8 +20,11 @@ public class onAFKToggle implements Listener {
         if(p.getGameMode().equals(GameMode.SPECTATOR)) {
             return;
         }
-
-        p.setPlayerListName(Utils.color("&7" + p.getName()));
+        if(p.hasPermission("group.kryeitor")) {
+            p.setPlayerListName(Utils.color("&6&l⚙ &r&7" + p.getName()));
+        } else {
+            p.setPlayerListName(Utils.color("&7" + p.getName()));
+        }
     }
     @EventHandler
     public void stopAfk(AFKStopEvent e) {
@@ -33,6 +36,10 @@ public class onAFKToggle implements Listener {
             return;
         }
 
-        p.setPlayerListName(Utils.color("&f" + p.getName()));
+        if(p.hasPermission("group.kryeitor")) {
+            p.setPlayerListName(Utils.color("&6&l⚙ &r&f" + p.getName()));
+        } else {
+            p.setPlayerListName(Utils.color("&f" + p.getName()));
+        }
     }
 }

@@ -9,7 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class Patreon implements CommandExecutor {
+public class KoFi implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -18,8 +18,8 @@ public class Patreon implements CommandExecutor {
             return false;
         }
 
-        TextComponent message = new TextComponent(Utils.color("Patreon -> &9&nhttps://www.patreon.com/KryeitMC"));
-        message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://www.patreon.com/KryeitMC"));
+        TextComponent message = new TextComponent(Utils.color("Ko-Fi(Donation site) -> &9&nhttps://ko-fi.com/kryeit"));
+        message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://ko-fi.com/kryeit"));
         player.spigot().sendMessage(message);
         return true;
     }

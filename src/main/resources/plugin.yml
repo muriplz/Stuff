@@ -1,6 +1,6 @@
 main: com.kryeit.Stuff
 version: 1.1
-author: MuriPlz
+authors: [MuriPlz,MrRedRhino]
 api-version: 1.18
 depend: [AFKPlus,GriefDefender]
 name: Stuff
@@ -21,11 +21,11 @@ commands:
     aliases:
       - sharecoords
   map:
-    description: shows dynmap url
+    description: shows bluemap url
   vote:
     description: sends planetminecraft link
-  patreon:
-    description: sends patreon link
+  kofi:
+    description: sends kofi link
     aliases:
       - donate
   timeplayed:

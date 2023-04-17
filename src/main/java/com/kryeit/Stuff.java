@@ -48,7 +48,7 @@ public class Stuff extends JavaPlugin {
         registerBasicCommand("rules", new Rules());
         registerBasicCommand("map", new Map());
         registerBasicCommand("vote", new Vote());
-        registerBasicCommand("patreon", new Patreon());
+        registerBasicCommand("kofi", new KoFi());
         registerBasicCommand("fly", new Fly());
 
         registerCommand("invsee", new InvSee(), new BasicPlayerTab());
