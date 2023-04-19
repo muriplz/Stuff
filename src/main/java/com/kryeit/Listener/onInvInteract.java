@@ -2,10 +2,12 @@ package com.kryeit.Listener;
 
 import com.kryeit.Utils;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
 
@@ -16,7 +18,11 @@ public class onInvInteract implements Listener {
         Player p = (Player) event.getWhoClicked();
         if(p.getName().equals("MuriPlz")) return;
 
-        String itemStack = Objects.requireNonNull(event.getCurrentItem()).toString();
+        ItemStack item = event.getCurrentItem();
+
+        if(item == null) return;
+
+        String itemStack = Objects.requireNonNull(item).toString();
 
         if(itemStack == null) return;
 

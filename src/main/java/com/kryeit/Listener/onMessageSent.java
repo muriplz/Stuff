@@ -23,14 +23,11 @@ public class onMessageSent implements Listener {
             }
         }
 
-        if(p.getName().equals("snackritebbq")) {
-
-            e.setFormat(Utils.color("&7snackritebbq &o(Dirt enjoyer)&r&f: " + message));
-            return;
-        }
-
         if(!p.hasPermission("stuff.muted") || p.isOp()) {
-            e.setFormat(Utils.color(getColouredName(p) + "&f: " + message));
+            if (message.length() > 5 && message.equals(message.toUpperCase())) {
+                message = message.toLowerCase();
+                }
+            e.setFormat(Utils.color(getColouredName(p) + "&f: ") + message);
         } else {
             e.setCancelled(true);
             p.sendMessage("You are soft muted from the general chat.");

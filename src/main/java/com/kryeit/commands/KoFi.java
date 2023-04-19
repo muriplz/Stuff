@@ -18,7 +18,7 @@ public class KoFi implements CommandExecutor {
             return false;
         }
 
-        TextComponent message = new TextComponent(Utils.color("Ko-Fi(Donation site) -> &9&nhttps://ko-fi.com/kryeit"));
+        TextComponent message = new TextComponent(Utils.color("Ko-Fi (Donation site) -> &9&nhttps://ko-fi.com/kryeit"));
         message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://ko-fi.com/kryeit"));
         player.spigot().sendMessage(message);
         return true;

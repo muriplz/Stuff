@@ -35,18 +35,15 @@ public class SendCoords implements CommandExecutor {
         BaseComponent[] components = new ComponentBuilder("")
                 .append(new TextComponent(cordSender.getName()))
                 .color(ChatColor.GOLD)
-                .bold(true)
                 .append(" has sent you the current coords: ")
                 .color(ChatColor.WHITE)
                 .append(new TextComponent("(" + x + ", " + y + ", " + z + ")"))
                 .color(ChatColor.GOLD)
-                .underlined(true)
-                .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Click to see in Dynmap")
+                .event(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("Click to see in Bluemap")
                         .color(ChatColor.LIGHT_PURPLE)
                         .create()))
-                .event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://map.kryeit.com/#world:" +
-        x + ":" + y + ":" + z + ":" + cordSender.getLocation().getYaw() + ":" + cordSender.getLocation().getPitch() +
-                ":0:0:0"))
+                .event(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://map.kryeit.com/#world:" + x
+                        + ":" + y + ":" + z + ":198:0:0:0:0:perspective"))
                 .create();
 
         cordReciever.spigot().sendMessage(components);
