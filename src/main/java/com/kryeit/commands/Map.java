@@ -24,7 +24,7 @@ public class Map implements CommandExecutor {
         message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
                 "https://map.kryeit.com/#world:" +
                 l.getBlockX() + ":" + l.getBlockY() + ":" + l.getBlockZ() + ":" + l.getYaw() + ":" + l.getPitch() +
-                ":0:0:0:free"));
+                ":0:0:0:perspective"));
         player.spigot().sendMessage(message);
         return true;
     }
