@@ -3,8 +3,10 @@ package com.kryeit.Listener;
 import com.griefdefender.api.GriefDefender;
 import com.griefdefender.api.claim.Claim;
 import org.bukkit.entity.Chicken;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityDropItemEvent;
 import org.bukkit.event.player.PlayerEggThrowEvent;
@@ -16,7 +18,7 @@ public class onChickenEgg implements Listener {
 
     @EventHandler
     public void onEggDrop(EntityDropItemEvent event) {
-        if (event.getEntity() instanceof Chicken && event.getItemDrop().getItemStack().getType().name().equals("EGG")) {
+        if (event.getEntity() instanceof Chicken && event.getItemDrop().getItemStack().getType().name().equalsIgnoreCase("EGG")) {
             event.setCancelled(true);
         }
     }
@@ -26,12 +28,12 @@ public class onChickenEgg implements Listener {
         Claim claim = GriefDefender.getCore().getClaimAt(event.getEgg().getLocation());
 
         assert claim != null;
-        if(!claim.isWilderness()) {
-            event.setHatching(false); // Cancel the random hatching
-            event.setNumHatches((byte) 1); // Set the number of chickens to spawn to 1
-            Chicken chicken = event.getPlayer().getWorld().spawn(event.getEgg().getLocation(), Chicken.class);
-            event.getEgg().remove(); // Remove the egg entity
-        }
+        if(claim.isWilderness()) return;
+
+        event.setHatching(false); // Cancel the random hatching
+        event.setNumHatches((byte) 1); // Set the number of chickens to spawn to 1
+        Chicken chicken = event.getPlayer().getWorld().spawn(event.getEgg().getLocation(), Chicken.class);
+        event.getEgg().remove(); // Remove the egg entity
     }
 
     @EventHandler
@@ -46,6 +48,18 @@ public class onChickenEgg implements Listener {
             }
             ItemStack eggStack = new ItemStack(org.bukkit.Material.EGG, numEggs);
             event.getDrops().add(eggStack);
+        }
+    }
+
+    @EventHandler
+    public void onDispenserEggThrow(BlockDispenseEvent event) {
+        Claim claim = GriefDefender.getCore().getClaimAt(event.getBlock().getLocation());
+
+        assert claim != null;
+        if(claim.isWilderness()) return;
+        if (event.getItem().getType().equals(org.bukkit.Material.EGG)) {
+            event.setCancelled(true); // Cancel the egg throwing
+            event.getBlock().getWorld().spawnEntity(event.getBlock().getLocation().add(0.5, 1.2, 0.5), EntityType.CHICKEN); // Spawn a chicken at the dispenser's location
         }
     }
 
