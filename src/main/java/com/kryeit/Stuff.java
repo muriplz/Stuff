@@ -3,6 +3,7 @@ package com.kryeit;
 import com.kryeit.Listener.*;
 import com.kryeit.commands.*;
 import com.kryeit.tab.BasicPlayerTab;
+import com.kryeit.tab.BuyLightTab;
 import com.kryeit.tab.PlayerTab;
 import com.kryeit.tab.ReturnEmptyTab;
 import net.lapismc.afkplus.api.AFKPlusPlayerAPI;
@@ -55,6 +56,7 @@ public class Stuff extends JavaPlugin {
         registerCommand("enderinvsee", new EnderInvSee(), new BasicPlayerTab());
         registerCommand("sendcoords", new SendCoords(), new BasicPlayerTab());
         registerCommand("timeplayed", new TimePlayed(), new BasicPlayerTab());
+        registerCommand("buylight", new BuyLight(), new BuyLightTab());
 
         registerCommand("lastonline", new LastOnline(), new PlayerTab());
 

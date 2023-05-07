@@ -44,3 +44,5 @@ commands:
   enderinvsee:
     description: gets a player enderchest
     permission: stuff.enderinvsee
+  buylight:
+    description: buys a light
