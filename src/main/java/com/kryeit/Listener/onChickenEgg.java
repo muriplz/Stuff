@@ -13,6 +13,7 @@ import org.bukkit.event.player.PlayerEggThrowEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class onChickenEgg implements Listener {
 
@@ -28,12 +29,19 @@ public class onChickenEgg implements Listener {
         Claim claim = GriefDefender.getCore().getClaimAt(event.getEgg().getLocation());
 
         assert claim != null;
-        if(claim.isWilderness()) return;
+        if (claim.isWilderness()) return;
 
         event.setHatching(false); // Cancel the random hatching
-        event.setNumHatches((byte) 1); // Set the number of chickens to spawn to 1
-        Chicken chicken = event.getPlayer().getWorld().spawn(event.getEgg().getLocation(), Chicken.class);
-        event.getEgg().remove(); // Remove the egg entity
+
+        Random random = new Random();
+        boolean shouldSpawnChicken = random.nextBoolean(); // 50% chance of being true
+
+        if (shouldSpawnChicken) {
+            event.setNumHatches((byte) 1); // Set the number of chickens to spawn to 1
+            Chicken chicken = event.getPlayer().getWorld().spawn(event.getEgg().getLocation(), Chicken.class);
+            chicken.setBaby();
+        }
+
     }
 
     @EventHandler
@@ -41,7 +49,7 @@ public class onChickenEgg implements Listener {
         if (event.getEntity() instanceof Chicken && !Objects.requireNonNull(GriefDefender.getCore().getClaimAt(event.getEntity().getLocation())).isWilderness() ) {
             int numEggs = 0;
             double rand = Math.random();
-            if (rand < 0.90) {
+            if (rand < 0.80) {
                 numEggs = 1;
             } else {
                 numEggs = 2;
@@ -62,5 +70,4 @@ public class onChickenEgg implements Listener {
             event.getBlock().getWorld().spawnEntity(event.getBlock().getLocation().add(0.5, 1.2, 0.5), EntityType.CHICKEN); // Spawn a chicken at the dispenser's location
         }
     }
-
 }
