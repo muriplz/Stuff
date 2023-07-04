@@ -18,8 +18,8 @@ public class Rules implements CommandExecutor {
             return false;
         }
 
-        TextComponent message = new TextComponent(Utils.color("Rules -> &9&nhttps://forum.kryeit.com/t/kryeit-rules"));
-        message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://forum.kryeit.com/t/kryeit-rules"));
+        TextComponent message = new TextComponent(Utils.color("Rules -> &9&nhttps://discord.com/channels/910626990468497439/1097952697820389467"));
+        message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.com/channels/910626990468497439/1097952697820389467"));
         player.spigot().sendMessage(message);
         return true;
     }

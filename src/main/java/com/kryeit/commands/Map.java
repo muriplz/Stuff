@@ -20,7 +20,7 @@ public class Map implements CommandExecutor {
 
         Location l = player.getLocation();
 
-        TextComponent message = new TextComponent(Utils.color("Dynmap -> &9&nhttps://map.kryeit.com/"));
+        TextComponent message = new TextComponent(Utils.color("Bluemap -> &9&nhttps://map.kryeit.com/"));
         message.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL,
                 "https://map.kryeit.com/#world:" +
                 l.getBlockX() + ":" + l.getBlockY() + ":" + l.getBlockZ() + ":" + l.getYaw() + ":" + l.getPitch() +

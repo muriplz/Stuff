@@ -12,8 +12,6 @@ commands:
     permission: stuff.online
   discord:
     description: sends discord link
-  forum:
-    description: sends forum link
   rules:
     description: sends rules link
   sendcoords:

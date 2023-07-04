@@ -23,6 +23,7 @@ public class onJoin implements Listener {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (player.getName().equals(p.getName())) {
                 p.sendMessage(Utils.color("&bWelcome to Kryeit! see /rules and /posthelp for additional information."));
+                p.sendMessage(Utils.color("&bFor claiming guide see https://docs.griefdefender.com/ and command usage use /gd."));
                 continue;
             }
             player.sendMessage(Utils.color("&b" + p.getName()

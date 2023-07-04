@@ -62,6 +62,10 @@ public class onMessageSent implements Listener {
             group = "Default";
         }
 
+        if(isPlayerInGroup(p,"kryeitor")) {
+            return "&6&l⚙ &r" + color + name;
+        }
+
         return color + name;
     }
 }

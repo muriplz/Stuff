@@ -2,15 +2,25 @@ package com.kryeit.Listener;
 
 import com.griefdefender.api.GriefDefender;
 import com.griefdefender.api.claim.Claim;
+import com.kryeit.Stuff;
+import com.kryeit.Utils;
+import org.bukkit.Bukkit;
+import org.bukkit.block.data.type.Dispenser;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Chicken;
+import org.bukkit.entity.Egg;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockDispenseEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityDropItemEvent;
+import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.event.player.PlayerEggThrowEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.projectiles.BlockProjectileSource;
 
 import java.util.Objects;
 import java.util.Random;
@@ -37,9 +47,7 @@ public class onChickenEgg implements Listener {
         boolean shouldSpawnChicken = random.nextBoolean(); // 50% chance of being true
 
         if (shouldSpawnChicken) {
-            event.setNumHatches((byte) 1); // Set the number of chickens to spawn to 1
-            Chicken chicken = event.getPlayer().getWorld().spawn(event.getEgg().getLocation(), Chicken.class);
-            chicken.setBaby();
+            event.getPlayer().getWorld().spawn(event.getEgg().getLocation(), Chicken.class).setBaby();
         }
 
     }
@@ -47,33 +55,64 @@ public class onChickenEgg implements Listener {
     @EventHandler
     public void onChickenDeath(EntityDeathEvent event) {
         if (event.getEntity() instanceof Chicken && !Objects.requireNonNull(GriefDefender.getCore().getClaimAt(event.getEntity().getLocation())).isWilderness() ) {
+            Player killer = event.getEntity().getKiller();
+            int lootingLevel = 0;
+            if (killer != null) {
+                lootingLevel = killer.getInventory().getItemInMainHand().getEnchantmentLevel(Enchantment.LOOT_BONUS_MOBS);
+            }
             int numEggs = 0;
             double rand = Math.random();
-            if (rand < 0.40) {
-                numEggs = 1;
-            } else if (rand < 0.70) {
-                numEggs = 2;
-            } else if (rand < 0.80) {
-                numEggs = 3;
+            if (rand < 0.40 + 0.10 * lootingLevel) {
+                numEggs = 1 + lootingLevel;
+            } else if (rand < 0.70 + 0.10 * lootingLevel) {
+                numEggs = 2 + lootingLevel;
+            } else if (rand < 0.80 + 0.05 * lootingLevel) {
+                numEggs = 3 + lootingLevel;
             } else if (rand < 0.90) {
-                numEggs = 4;
+                numEggs = 4 + lootingLevel;
             } else {
-                numEggs = 5;
+                numEggs = 5 + lootingLevel;
             }
             ItemStack eggStack = new ItemStack(org.bukkit.Material.EGG, numEggs);
             event.getDrops().add(eggStack);
         }
     }
+  //  @EventHandler
+  //  public void onDispenserFiwreEgg(BlockDispenseEvent event) {
+  //      Utils.broadcast("bbbbbbbbbbbbbbbbbbbbbbbb");
+//
+  //  }
+//
+  //  @EventHandler
+  //  public void onDispenserFireEgg(ProjectileLaunchEvent event) {
+  //      Utils.broadcast("aaaaaaaaaaaaaaaaaaaaaa");
+  //      if (!(event.getEntity() instanceof Egg)) {
+  //          return;
+  //      }
+//
+  //      Egg egg = (Egg) event.getEntity();
+//
+  //      if (!(egg.getShooter() instanceof BlockProjectileSource)) {
+  //          return;
+  //      }
+  //      Claim claim = GriefDefender.getCore().getClaimAt(egg.getLocation());
+//
+  //      if (claim == null || claim.isWilderness()) {
+  //          return;
+  //      }
+//
+  //      Stuff.getInstance().getServer().getScheduler().runTaskLater(Stuff.getInstance(), () -> {
+  //          Random random = new Random();
+  //          boolean shouldSpawnChicken = random.nextBoolean(); // 50% chance of being true
+//
+  //          if (shouldSpawnChicken) {
+  //              egg.getWorld().spawn(egg.getLocation(), Chicken.class).setBaby();
+  //          }
+  //      }, 1L);
+//
+  //      egg.remove(); // Cancel the random hatching
+//
+//
+  //  }
 
-    @EventHandler
-    public void onDispenserEggThrow(BlockDispenseEvent event) {
-        Claim claim = GriefDefender.getCore().getClaimAt(event.getBlock().getLocation());
-
-        assert claim != null;
-        if(claim.isWilderness()) return;
-        if (event.getItem().getType().equals(org.bukkit.Material.EGG)) {
-            event.setCancelled(true); // Cancel the egg throwing
-            event.getBlock().getWorld().spawnEntity(event.getBlock().getLocation().add(0.5, 1.2, 0.5), EntityType.CHICKEN); // Spawn a chicken at the dispenser's location
-        }
-    }
 }
